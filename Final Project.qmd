@@ -4,8 +4,123 @@ format: html
 editor: visual
 ---
 
-## Final Project 
+## Final Project
 
 Stat-515-002 (Spring 2024)
 
 ***Group Number: 14***
+
+Visluzations1 : crash frequency per year
+
+```{r, code_folding=TRUE}
+data = read.csv('/Users/manoharshasappa/Desktop/stat 515 /Final Project Stat/Crash_Reporting_-_Drivers_Data.csv')
+str(data)
+```
+
+**Columns Used:**
+
+-   **`Crash_Date`**:
+
+    -   **Rationale for Use**: The specific date and time of each crash incident are crucial for temporal analysis and trend identification.
+
+-   **`Year`** (Derived from **`Crash_Date`**):
+
+    -   **Rationale for Use**: Grouping the data by year enables the identification of yearly patterns and trends in crash occurrences.
+
+-   **`Num_Crashes`** (Derived from counting the number of records for each year):
+
+    -   **Rationale for Use**: Quantifying the crash frequency provides a clear measure for understanding the magnitude of road accidents over time.
+
+**Rationale for Using These Columns:**
+
+The choice of **`Crash_Date`**, **`Year`** (derived from **`Crash_Date`**), and **`Num_Crashes`** is deliberate, aiming to capture key aspects of road accident dynamics in Montgomery County. **`Crash_Date`** provides a temporal dimension, vital for spotting trends and seasonal variations in accidents, guiding policy interventions. Derived from **`Crash_Date`**, **`Year`** facilitates grouping data into yearly intervals, offering a high-level view of crash frequency trends crucial for long-term planning. Complementing this, **`Num_Crashes`** quantifies accident frequency, serving as a benchmark for evaluating safety initiatives and identifying areas needing intervention.
+
+**Explanation of the Code:**
+
+The code navigates the dataset methodically, starting with standardizing **`Crash_Date`** for temporal analysis. Deriving **`Year`** from **`Crash_Date`** enables grouping by year for trend assessment. Utilizing **`dplyr`**, it aggregates data by year, computing crash counts (**`Num_Crashes`**) to synthesize insights. Preparing **`yearly_crash_data`** sets the stage for visualization, while **`ggplot2`** crafts a visually engaging bar plot of crash frequency per year. This systematic approach transforms raw data into actionable insights, empowering stakeholders with the information needed for effective road safety initiatives.
+
+visulization 2 :
+
+1.  **Library Import**: The code begins by importing the **`leaflet`** library, which provides functions for creating interactive maps.
+
+2.  **Map Initialization**: The **`leaflet()`** function initializes a leaflet map object.
+
+3.  **Adding Tiles**: The **`addTiles()`** function adds default OpenStreetMap tiles to the map. These tiles provide the base layer for the map.
+
+4.  **Adding Circle Markers**: The **`addCircleMarkers()`** function adds circular markers to the map. Each marker represents a specific location specified by its longitude and latitude coordinates.
+
+    -   **`lng = ~Longitude`**: Specifies the longitude coordinates of the markers, extracted from the **`Longitude`** column of the **`data`** dataframe.
+
+    -   **`lat = ~Latitude`**: Specifies the latitude coordinates of the markers, extracted from the **`Latitude`** column of the **`data`** dataframe.
+
+    -   **`popup = ~as.character(Report.Number)`**: Specifies the content of the pop-up windows that appear when markers are clicked. In this case, it displays the **`Report.Number`** converted to a character format.
+
+    -   **`label = ~as.character(Report.Number)`**: Specifies the text labels that appear on the markers. In this case, it also displays the **`Report.Number`**.
+
+5.  **Print the Map**: Finally, the **`map`** object is printed, which renders the interactive map containing the added tiles and circle markers.
+
+visulization3 :
+
+-   **Vehicle.Make**: This column is used to group the data by vehicle make, as we want to count the number of accidents for each vehicle make.
+
+-   **count**: This column is created using **`summarise()`** to count the number of accidents for each vehicle make group. It represents the frequency of accidents for each vehicle make.
+
+    These columns are essential for generating a bar plot that visualizes the top N most common vehicle makes involved in accidents. The plot provides insights into which vehicle makes are most frequently involved in accidents, aiding in understanding accident patterns and potentially informing safety measures or interventions.
+
+Hypothesis:
+
+### 1. is there any relation between weather condition, day light and injury seviarity
+
+The code you provided performs a chi-square test of independence to determine whether there is a statistically significant association between weather condition, light condition, and injury severity in traffic accidents. Here's an explanation of why this test was conducted and what was observed:
+
+**Chi-Square Test of Independence**: The chi-square test is a statistical test used to determine whether there is a significant association between two categorical variables. In this case, the variables of interest are weather condition, light condition, and injury severity.
+
+**Observation**: By analyzing the contingency table generated from the data, which shows the frequency distribution of the combinations of weather condition, light condition, and injury severity, we can observe the following:
+
+-   The contingency table provides counts of the number of accidents for each combination of weather condition, light condition, and injury severity.
+
+-   The chi-square test is then applied to assess whether these variables are independent of each other or if there is a relationship between them.
+
+**Test Results**:
+
+-   The chi-square test calculates a chi-square statistic and a corresponding p-value.
+
+-   The null hypothesis for the chi-square test is that there is no association between the variables (i.e., they are independent).
+
+-   The alternative hypothesis is that there is an association between the variables (i.e., they are not independent).
+
+-   A low p-value (typically below a significance level, such as 0.05) indicates that the observed association between the variables is statistically significant, suggesting that they are not independent.
+
+**Interpretation**:
+
+In this case, the chi-square test results indicate a statistically significant association between weather condition, light condition, and injury severity, with a chi-square value of 31341 and a very low p-value (typically denoted as less than 0.05 or 2.2e-16 in this case).
+
+This suggests that there is a relationship between these variables. In other words, weather condition and light condition are not independent of injury severity in traffic accidents.
+
+### 2. Are certain types of vehicles more likely to be involved in collisions at night compared to during the day?
+
+The code aims to determine whether certain types of vehicles are more likely to be involved in collisions at night compared to during the day. Here's a clear interpretation of the analysis:
+
+1.  **Subset Data**: The dataset is divided into two subsets: collisions occurring during the day (**`collisions_day`**) and collisions occurring at night with lights on (**`collisions_night`**).
+
+2.  **Count Vehicle Types**: Counts of each vehicle type involved in collisions are calculated separately for day and night collisions.
+
+3.  **Chi-Square Test**: A chi-square test of independence is performed to assess whether there is a significant association between vehicle types and the time of the collision (day or night).
+
+4.  **Interpretation of Results**: The result of the chi-square test indicates that the difference in the distribution of vehicle types between day and night collisions is not statistically significant (p-value = 0.2408, df = 930). Therefore, we fail to reject the null hypothesis, suggesting that there is no evidence to conclude that certain types of vehicles are more likely to be involved in collisions at night compared to during the day.
+
+### 3. Do drivers distracted by electronic devices have a higher rate of collisions compared to drivers distracted by other factors?
+
+The analysis aims to determine whether drivers distracted by electronic devices have a higher rate of collisions compared to drivers distracted by other factors. Here's a clear interpretation of the results:
+
+1.  **Data Subset**: The dataset is divided into two subsets: one for drivers distracted by electronic devices (**`electronic_distracted`**) and another for drivers distracted by other factors (**`other_distracted`**).
+
+2.  **Count Collisions**: The number of collisions is counted separately for drivers distracted by electronic devices and those distracted by other factors.
+
+3.  **Chi-Square Test**: A chi-square test of independence is performed to assess whether there is a significant difference in collision rates between the two groups of drivers.
+
+4.  **Interpretation of Results**: The chi-square test results suggest that there is a statistically significant difference in collision rates between drivers distracted by electronic devices and drivers distracted by other factors. This indicates that drivers distracted by electronic devices are more likely to be involved in collisions compared to those distracted by other factors.
+
+### Predicting: 1. Can we predict the severity of injuries based on various factors such as weather conditions, road surface conditions, and collision type?
+
+### 
