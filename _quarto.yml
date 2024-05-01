@@ -7,9 +7,10 @@ website:
   navbar: 
     left: 
     - Home.qmd
+    - Project Details.qmd
     - Final Project.qmd
     - About Us.qmd
-    - Project Details.qmd
+   
  
 format: 
   html: 
