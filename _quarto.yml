@@ -1,0 +1,16 @@
+project: 
+  type: website 
+  output-dir: docs 
+
+website:
+  title: "Final Project" 
+  navbar: 
+    left: 
+    - Home.qmd
+    - Final Project.qmd
+    - About Us.qmd
+    - Project Details.qmd
+ 
+format: 
+  html: 
+    theme: cosmo 
