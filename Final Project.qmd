@@ -48,8 +48,9 @@ map <- leaflet(data) %>%
     popup = ~as.character(Report.Number),
     label = ~as.character(Report.Number)
   )
+
+# Print the map
 map
-```
 ```
 
 1.  **Library Import**: The code begins by importing the **`leaflet`** library, which provides functions for creating interactive maps.
