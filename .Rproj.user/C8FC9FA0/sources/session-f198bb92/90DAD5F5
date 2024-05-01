@@ -3,7 +3,7 @@
     "path": "~/Desktop/stat 515 /stat_FinalProject02/About Us.qmd",
     "project_path": "About Us.qmd",
     "type": "quarto_markdown",
-    "hash": "0",
+    "hash": "3970524388",
     "contents": "",
     "dirty": false,
     "created": 1714534392646.0,
@@ -17,16 +17,16 @@
         "Source": "Source",
         "docOutlineVisible": "1",
         "rmdVisualCollapsedChunks": "",
-        "cursorPosition": "1,0",
+        "cursorPosition": "6,0",
         "scrollLine": "0",
-        "rmdVisualModeLocation": "2:0"
+        "rmdVisualModeLocation": "65:0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1714534400,
+    "lastKnownWriteTime": 1714534787,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1714534400081,
+    "last_content_update": 1714534787921,
     "read_only": false,
     "read_only_alternatives": []
 }
