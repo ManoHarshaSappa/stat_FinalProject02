@@ -4,6 +4,19 @@ format: html
 editor: visual
 ---
 
-## Quarto
+# **Welcome to Our Final Project Homepage!**
 
-checkig maa
+::: {style="text-align:justify"}
+**We're thrilled to welcome you to our project homepage dedicated to unraveling insights from traffic collisions in Montgomery County, MD. Together, we, a team of dedicated students from George Mason University, are embarking on this journey to analyze and explore data spanning from 2020 to 2024 sourced from the Automated Crash Reporting System (ACRS) of the Maryland State Police. Under the guidance of our professor, Dr. Isuru Dassanayake, Ph.D. in Statistics**
+:::
+
+#### Allow us to introduce our team members:
+
+-   Mano Harsha Sappa (G01459796)
+-   Varun (G01475545)
+-   Chandra Shekar (G01459798)
+
+#### By exploring our project website, you'll learn:
+::: {style="text-align:justify"}
+Explore our project website to delve into the intricacies of traffic collisions in Montgomery County, MD. Through data analysis, uncover the multifaceted factors contributing to accidents, ranging from location and vehicle types to driver conditions and substance abuse involvement. Discover trends and patterns over time, enabling a deeper understanding of the dynamics at play and facilitating informed decision-making. Engage with interactive visualizations that breathe life into the data, simplifying complex information and highlighting key insights. Delve into the community impact of our findings, learning how they can shape road safety initiatives in Montgomery County and beyond, and how you can contribute to creating safer roads for everyone.
+:::

@@ -4,6 +4,62 @@ format: html
 editor: visual
 ---
 
-## Quarto
+## Project Details:
 
-checking
+
+::: {style="text-align:justify"}
+The Dataset, sourced from the Maryland State Police's Automated Crash Reporting System, encompasses traffic collisions in Montgomery County, MD, from 2020 to 2023, comprising 172,106 rows and 43 columns. It provides details on collision dates, locations, vehicle types, driver conditions, and fault attributions, facilitating analysis of collision trends and the development of predictive models for road safety measures. The dataset can be accessed through the following URL: <https://catalog.data.gov/dataset/crash-reporting-drivers-data>
+::: 
+
+#### Traffic Incident Dataset Column Descriptions:
+
+| No  | Column Name                    | Data Type | Explanation                                                  | Example Values                   |
+|---------------|---------------|---------------|---------------|---------------|
+| 1   | Report Number                  | Object    | Unique identifier for each incident report.                  | "RPT2024-001", "RPT2024-002"     |
+| 2   | Local Case Number              | Object    | Identifier within the local jurisdiction.                    | "LCN001", "LCN002"               |
+| 3   | Agency Name                    | Object    | Organization handling the incident report.                   | "Police Department", "DOT"       |
+| 4   | ACRS Report Type               | Object    | Type of report per the Administrative Code Reporting System. | "Crash", "Incident"              |
+| 5   | Crash Date/Time                | Object    | Date and time when the crash occurred.                       | "2024-04-30 14:30:00"            |
+| 6   | Route Type                     | Object    | Type of route where the crash happened.                      | "Highway", "Local Road"          |
+| 7   | Road Name                      | Object    | Name of the road where the crash occurred.                   | "Main Street", "Broadway"        |
+| 8   | Cross-Street Type              | Object    | Type of intersecting street.                                 | "Street", "Avenue"               |
+| 9   | Cross-Street Name              | Object    | Name of the intersecting street.                             | "Elm Street", "Maple Avenue"     |
+| 10  | Off-Road Description           | Object    | Description if crash occurred off-road.                      | "Parking Lot", "Field"           |
+| 11  | Municipality                   | Object    | City or town where the crash occurred.                       | "City A", "Town B"               |
+| 12  | Related Non-Motorist           | Object    | Non-motorist involved in the incident.                       | "Pedestrian", "Cyclist"          |
+| 13  | Collision Type                 | Object    | Type of collision.                                           | "Rear-end", "Head-on"            |
+| 14  | Weather                        | Object    | Weather conditions at the time of the crash.                 | "Clear", "Rain"                  |
+| 15  | Surface Condition              | Object    | Road surface condition at the time of the crash.             | "Dry", "Wet"                     |
+| 16  | Light                          | Object    | Lighting conditions at the time of the crash.                | "Daylight", "Dark"               |
+| 17  | Traffic Control                | Object    | Type of traffic control at the scene.                        | "Traffic Signal", "Stop Sign"    |
+| 18  | Driver Substance Abuse         | Object    | Whether driver was under substance influence.                | "Yes", "No"                      |
+| 19  | Non-Motorist Substance Abuse   | Object    | Whether non-motorist was under substance influence.          | "Yes", "No"                      |
+| 20  | Person ID                      | Object    | Unique identifier for individuals involved.                  | "PID001", "PID002"               |
+| 21  | Driver At Fault                | Object    | Whether driver was at fault.                                 | "Yes", "No"                      |
+| 22  | Injury Severity                | Object    | Severity of injuries sustained.                              | "Fatal", "Minor Injury"          |
+| 23  | Circumstance                   | Object    | Specific circumstances surrounding the incident.             | "Speeding", "Distracted Driving" |
+| 24  | Driver Distracted By           | Object    | What the driver was distracted by.                           | "Cell Phone", "Passenger"        |
+| 25  | Drivers License State          | Object    | State where driver's license was issued.                     | "CA", "NY"                       |
+| 26  | Vehicle ID                     | Object    | Unique identifier for vehicles involved.                     | "VID001", "VID002"               |
+| 27  | Vehicle Damage Extent          | Object    | Extent of damage to the vehicle.                             | "Minor", "Severe"                |
+| 28  | Vehicle First Impact Location  | Object    | Location on vehicle of first impact.                         | "Front", "Rear"                  |
+| 29  | Vehicle Second Impact Location | Object    | Location on vehicle of second impact.                        | "Side", "Front"                  |
+| 30  | Vehicle Body Type              | Object    | Type of vehicle body.                                        | "Sedan", "SUV"                   |
+| 31  | Vehicle Movement               | Object    | Movement of the vehicle at the time of the crash.            | "Stopped", "Moving"              |
+| 32  | Vehicle Continuing Dir         | Object    | Direction vehicle continued after crash.                     | "North", "East"                  |
+| 33  | Vehicle Going Dir              | Object    | Direction vehicle was going at time of crash.                | "South", "West"                  |
+| 34  | Speed Limit                    | Int64     | Speed limit of road where crash occurred.                    | 30, 55                           |
+| 35  | Driverless Vehicle             | Object    | Whether vehicle was driverless (autonomous).                 | "Yes", "No"                      |
+| 36  | Parked Vehicle                 | Object    | Whether vehicle was parked at time of crash.                 | "Yes", "No"                      |
+| 37  | Vehicle Year                   | Int64     | Year of manufacture of the vehicle.                          | 2019, 2022                       |
+| 38  | Vehicle Make                   | Object    | Make or brand of the vehicle.                                | "Toyota", "Ford"                 |
+| 39  | Vehicle Model                  | Object    | Model of the vehicle.                                        | "Camry", "F-150"                 |
+| 40  | Equipment Problems             | Object    | Any equipment problems contributing to crash.                | "Brake Failure", "Tire Blowout"  |
+| 41  | Latitude                       | Float64   | Latitude coordinate of crash location.                       | 40.7128, 34.0522                 |
+| 42  | Longitude                      | Float64   | Longitude coordinate of crash location.                      | -74.0060, -118.2437              |
+| 43  | Location                       | Object    | Description or address of crash location.                    | "123 Main St, City A"            |
+
+
+::: {style="text-align:justify"}
+This table provides a clear overview of each column in the dataset, its data type, an explanation of what the column represents, and example values for better understanding.
+::: 

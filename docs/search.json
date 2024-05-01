@@ -1,65 +1,37 @@
 [
   {
-    "objectID": "Final Project.html",
-    "href": "Final Project.html",
-    "title": "Final Project",
-    "section": "",
-    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
-  },
-  {
-    "objectID": "Final Project.html#quarto",
-    "href": "Final Project.html#quarto",
-    "title": "Final Project",
-    "section": "",
-    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
-  },
-  {
-    "objectID": "Final Project.html#cgecking",
-    "href": "Final Project.html#cgecking",
-    "title": "Final Project",
-    "section": "cgecking",
-    "text": "cgecking"
-  },
-  {
     "objectID": "About Us.html",
     "href": "About Us.html",
     "title": "About Us",
     "section": "",
-    "text": "checking"
+    "text": "Mano Harsha Sappa (G01459796)\nVarun (G01475545)\nChandra Shekar (G01459798)"
   },
   {
     "objectID": "About Us.html#quarto",
     "href": "About Us.html#quarto",
     "title": "About Us",
     "section": "",
-    "text": "checking"
+    "text": "Mano Harsha Sappa (G01459796)\nVarun (G01475545)\nChandra Shekar (G01459798)"
   },
   {
     "objectID": "Home.html",
     "href": "Home.html",
     "title": "Home",
     "section": "",
-    "text": "checkig maa"
-  },
-  {
-    "objectID": "Home.html#quarto",
-    "href": "Home.html#quarto",
-    "title": "Home",
-    "section": "",
-    "text": "checkig maa"
+    "text": "Welcome to Our Final Project Homepage!\n\nWe’re thrilled to welcome you to our project homepage dedicated to unraveling insights from traffic collisions in Montgomery County, MD. Together, we, a team of dedicated students from George Mason University, are embarking on this journey to analyze and explore data spanning from 2020 to 2024 sourced from the Automated Crash Reporting System (ACRS) of the Maryland State Police. Under the guidance of our professor, Dr. Isuru Dassanayake, Ph.D. in Statistics\n\n\nAllow us to introduce our team members:\n\nMano Harsha Sappa (G01459796)\nVarun (G01475545)\nChandra Shekar (G01459798)\n\n\n\nBy exploring our project website, you’ll learn:\n\nExplore our project website to delve into the intricacies of traffic collisions in Montgomery County, MD. Through data analysis, uncover the multifaceted factors contributing to accidents, ranging from location and vehicle types to driver conditions and substance abuse involvement. Discover trends and patterns over time, enabling a deeper understanding of the dynamics at play and facilitating informed decision-making. Engage with interactive visualizations that breathe life into the data, simplifying complex information and highlighting key insights. Delve into the community impact of our findings, learning how they can shape road safety initiatives in Montgomery County and beyond, and how you can contribute to creating safer roads for everyone."
   },
   {
     "objectID": "Project Details.html",
     "href": "Project Details.html",
     "title": "Project Details",
     "section": "",
-    "text": "checking"
+    "text": "The Dataset, sourced from the Maryland State Police’s Automated Crash Reporting System, encompasses traffic collisions in Montgomery County, MD, from 2020 to 2023, comprising 172,106 rows and 43 columns. It provides details on collision dates, locations, vehicle types, driver conditions, and fault attributions, facilitating analysis of collision trends and the development of predictive models for road safety measures. The dataset can be accessed through the following URL: https://catalog.data.gov/dataset/crash-reporting-drivers-data\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo\nColumn Name\nData Type\nExplanation\nExample Values\n\n\n\n\n1\nReport Number\nObject\nUnique identifier for each incident report.\n“RPT2024-001”, “RPT2024-002”\n\n\n2\nLocal Case Number\nObject\nIdentifier within the local jurisdiction.\n“LCN001”, “LCN002”\n\n\n3\nAgency Name\nObject\nOrganization handling the incident report.\n“Police Department”, “DOT”\n\n\n4\nACRS Report Type\nObject\nType of report per the Administrative Code Reporting System.\n“Crash”, “Incident”\n\n\n5\nCrash Date/Time\nObject\nDate and time when the crash occurred.\n“2024-04-30 14:30:00”\n\n\n6\nRoute Type\nObject\nType of route where the crash happened.\n“Highway”, “Local Road”\n\n\n7\nRoad Name\nObject\nName of the road where the crash occurred.\n“Main Street”, “Broadway”\n\n\n8\nCross-Street Type\nObject\nType of intersecting street.\n“Street”, “Avenue”\n\n\n9\nCross-Street Name\nObject\nName of the intersecting street.\n“Elm Street”, “Maple Avenue”\n\n\n10\nOff-Road Description\nObject\nDescription if crash occurred off-road.\n“Parking Lot”, “Field”\n\n\n11\nMunicipality\nObject\nCity or town where the crash occurred.\n“City A”, “Town B”\n\n\n12\nRelated Non-Motorist\nObject\nNon-motorist involved in the incident.\n“Pedestrian”, “Cyclist”\n\n\n13\nCollision Type\nObject\nType of collision.\n“Rear-end”, “Head-on”\n\n\n14\nWeather\nObject\nWeather conditions at the time of the crash.\n“Clear”, “Rain”\n\n\n15\nSurface Condition\nObject\nRoad surface condition at the time of the crash.\n“Dry”, “Wet”\n\n\n16\nLight\nObject\nLighting conditions at the time of the crash.\n“Daylight”, “Dark”\n\n\n17\nTraffic Control\nObject\nType of traffic control at the scene.\n“Traffic Signal”, “Stop Sign”\n\n\n18\nDriver Substance Abuse\nObject\nWhether driver was under substance influence.\n“Yes”, “No”\n\n\n19\nNon-Motorist Substance Abuse\nObject\nWhether non-motorist was under substance influence.\n“Yes”, “No”\n\n\n20\nPerson ID\nObject\nUnique identifier for individuals involved.\n“PID001”, “PID002”\n\n\n21\nDriver At Fault\nObject\nWhether driver was at fault.\n“Yes”, “No”\n\n\n22\nInjury Severity\nObject\nSeverity of injuries sustained.\n“Fatal”, “Minor Injury”\n\n\n23\nCircumstance\nObject\nSpecific circumstances surrounding the incident.\n“Speeding”, “Distracted Driving”\n\n\n24\nDriver Distracted By\nObject\nWhat the driver was distracted by.\n“Cell Phone”, “Passenger”\n\n\n25\nDrivers License State\nObject\nState where driver’s license was issued.\n“CA”, “NY”\n\n\n26\nVehicle ID\nObject\nUnique identifier for vehicles involved.\n“VID001”, “VID002”\n\n\n27\nVehicle Damage Extent\nObject\nExtent of damage to the vehicle.\n“Minor”, “Severe”\n\n\n28\nVehicle First Impact Location\nObject\nLocation on vehicle of first impact.\n“Front”, “Rear”\n\n\n29\nVehicle Second Impact Location\nObject\nLocation on vehicle of second impact.\n“Side”, “Front”\n\n\n30\nVehicle Body Type\nObject\nType of vehicle body.\n“Sedan”, “SUV”\n\n\n31\nVehicle Movement\nObject\nMovement of the vehicle at the time of the crash.\n“Stopped”, “Moving”\n\n\n32\nVehicle Continuing Dir\nObject\nDirection vehicle continued after crash.\n“North”, “East”\n\n\n33\nVehicle Going Dir\nObject\nDirection vehicle was going at time of crash.\n“South”, “West”\n\n\n34\nSpeed Limit\nInt64\nSpeed limit of road where crash occurred.\n30, 55\n\n\n35\nDriverless Vehicle\nObject\nWhether vehicle was driverless (autonomous).\n“Yes”, “No”\n\n\n36\nParked Vehicle\nObject\nWhether vehicle was parked at time of crash.\n“Yes”, “No”\n\n\n37\nVehicle Year\nInt64\nYear of manufacture of the vehicle.\n2019, 2022\n\n\n38\nVehicle Make\nObject\nMake or brand of the vehicle.\n“Toyota”, “Ford”\n\n\n39\nVehicle Model\nObject\nModel of the vehicle.\n“Camry”, “F-150”\n\n\n40\nEquipment Problems\nObject\nAny equipment problems contributing to crash.\n“Brake Failure”, “Tire Blowout”\n\n\n41\nLatitude\nFloat64\nLatitude coordinate of crash location.\n40.7128, 34.0522\n\n\n42\nLongitude\nFloat64\nLongitude coordinate of crash location.\n-74.0060, -118.2437\n\n\n43\nLocation\nObject\nDescription or address of crash location.\n“123 Main St, City A”\n\n\n\n\nThis table provides a clear overview of each column in the dataset, its data type, an explanation of what the column represents, and example values for better understanding."
   },
   {
-    "objectID": "Project Details.html#quarto",
-    "href": "Project Details.html#quarto",
+    "objectID": "Project Details.html#project-details",
+    "href": "Project Details.html#project-details",
     "title": "Project Details",
     "section": "",
-    "text": "checking"
+    "text": "The Dataset, sourced from the Maryland State Police’s Automated Crash Reporting System, encompasses traffic collisions in Montgomery County, MD, from 2020 to 2023, comprising 172,106 rows and 43 columns. It provides details on collision dates, locations, vehicle types, driver conditions, and fault attributions, facilitating analysis of collision trends and the development of predictive models for road safety measures. The dataset can be accessed through the following URL: https://catalog.data.gov/dataset/crash-reporting-drivers-data\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo\nColumn Name\nData Type\nExplanation\nExample Values\n\n\n\n\n1\nReport Number\nObject\nUnique identifier for each incident report.\n“RPT2024-001”, “RPT2024-002”\n\n\n2\nLocal Case Number\nObject\nIdentifier within the local jurisdiction.\n“LCN001”, “LCN002”\n\n\n3\nAgency Name\nObject\nOrganization handling the incident report.\n“Police Department”, “DOT”\n\n\n4\nACRS Report Type\nObject\nType of report per the Administrative Code Reporting System.\n“Crash”, “Incident”\n\n\n5\nCrash Date/Time\nObject\nDate and time when the crash occurred.\n“2024-04-30 14:30:00”\n\n\n6\nRoute Type\nObject\nType of route where the crash happened.\n“Highway”, “Local Road”\n\n\n7\nRoad Name\nObject\nName of the road where the crash occurred.\n“Main Street”, “Broadway”\n\n\n8\nCross-Street Type\nObject\nType of intersecting street.\n“Street”, “Avenue”\n\n\n9\nCross-Street Name\nObject\nName of the intersecting street.\n“Elm Street”, “Maple Avenue”\n\n\n10\nOff-Road Description\nObject\nDescription if crash occurred off-road.\n“Parking Lot”, “Field”\n\n\n11\nMunicipality\nObject\nCity or town where the crash occurred.\n“City A”, “Town B”\n\n\n12\nRelated Non-Motorist\nObject\nNon-motorist involved in the incident.\n“Pedestrian”, “Cyclist”\n\n\n13\nCollision Type\nObject\nType of collision.\n“Rear-end”, “Head-on”\n\n\n14\nWeather\nObject\nWeather conditions at the time of the crash.\n“Clear”, “Rain”\n\n\n15\nSurface Condition\nObject\nRoad surface condition at the time of the crash.\n“Dry”, “Wet”\n\n\n16\nLight\nObject\nLighting conditions at the time of the crash.\n“Daylight”, “Dark”\n\n\n17\nTraffic Control\nObject\nType of traffic control at the scene.\n“Traffic Signal”, “Stop Sign”\n\n\n18\nDriver Substance Abuse\nObject\nWhether driver was under substance influence.\n“Yes”, “No”\n\n\n19\nNon-Motorist Substance Abuse\nObject\nWhether non-motorist was under substance influence.\n“Yes”, “No”\n\n\n20\nPerson ID\nObject\nUnique identifier for individuals involved.\n“PID001”, “PID002”\n\n\n21\nDriver At Fault\nObject\nWhether driver was at fault.\n“Yes”, “No”\n\n\n22\nInjury Severity\nObject\nSeverity of injuries sustained.\n“Fatal”, “Minor Injury”\n\n\n23\nCircumstance\nObject\nSpecific circumstances surrounding the incident.\n“Speeding”, “Distracted Driving”\n\n\n24\nDriver Distracted By\nObject\nWhat the driver was distracted by.\n“Cell Phone”, “Passenger”\n\n\n25\nDrivers License State\nObject\nState where driver’s license was issued.\n“CA”, “NY”\n\n\n26\nVehicle ID\nObject\nUnique identifier for vehicles involved.\n“VID001”, “VID002”\n\n\n27\nVehicle Damage Extent\nObject\nExtent of damage to the vehicle.\n“Minor”, “Severe”\n\n\n28\nVehicle First Impact Location\nObject\nLocation on vehicle of first impact.\n“Front”, “Rear”\n\n\n29\nVehicle Second Impact Location\nObject\nLocation on vehicle of second impact.\n“Side”, “Front”\n\n\n30\nVehicle Body Type\nObject\nType of vehicle body.\n“Sedan”, “SUV”\n\n\n31\nVehicle Movement\nObject\nMovement of the vehicle at the time of the crash.\n“Stopped”, “Moving”\n\n\n32\nVehicle Continuing Dir\nObject\nDirection vehicle continued after crash.\n“North”, “East”\n\n\n33\nVehicle Going Dir\nObject\nDirection vehicle was going at time of crash.\n“South”, “West”\n\n\n34\nSpeed Limit\nInt64\nSpeed limit of road where crash occurred.\n30, 55\n\n\n35\nDriverless Vehicle\nObject\nWhether vehicle was driverless (autonomous).\n“Yes”, “No”\n\n\n36\nParked Vehicle\nObject\nWhether vehicle was parked at time of crash.\n“Yes”, “No”\n\n\n37\nVehicle Year\nInt64\nYear of manufacture of the vehicle.\n2019, 2022\n\n\n38\nVehicle Make\nObject\nMake or brand of the vehicle.\n“Toyota”, “Ford”\n\n\n39\nVehicle Model\nObject\nModel of the vehicle.\n“Camry”, “F-150”\n\n\n40\nEquipment Problems\nObject\nAny equipment problems contributing to crash.\n“Brake Failure”, “Tire Blowout”\n\n\n41\nLatitude\nFloat64\nLatitude coordinate of crash location.\n40.7128, 34.0522\n\n\n42\nLongitude\nFloat64\nLongitude coordinate of crash location.\n-74.0060, -118.2437\n\n\n43\nLocation\nObject\nDescription or address of crash location.\n“123 Main St, City A”\n\n\n\n\nThis table provides a clear overview of each column in the dataset, its data type, an explanation of what the column represents, and example values for better understanding."
   }
 ]
