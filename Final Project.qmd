@@ -12,9 +12,13 @@ Stat-515-002 (Spring 2024)
 
 Visluzations1 : crash frequency per year
 
-```{r, code_folding=TRUE}
-data = read.csv('/Users/manoharshasappa/Desktop/stat 515 /Final Project Stat/Crash_Reporting_-_Drivers_Data.csv')
-str(data)
+```{fold}
+title: Click to view code
+code: true
+---
+```{r}
+data <- read.csv('/Users/manoharshasappa/Desktop/stat 515 /Final Project Stat/Crash_Reporting_-_Drivers_Data.csv')
+
 ```
 
 **Columns Used:**
