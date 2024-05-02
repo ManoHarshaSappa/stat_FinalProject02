@@ -4,7 +4,7 @@ format: html
 editor: visual
 ---
 
-# **Welcome to Our Final Project Homepage! check**
+# **Welcome to Our Final Project Homepage!** 
 
 ::: {style="text-align:justify"}
 **We're thrilled to welcome you to our project homepage dedicated to unraveling insights from traffic collisions in Montgomery County, MD. Together, we, a team of dedicated students from George Mason University, are embarking on this journey to analyze and explore data spanning from 2020 to 2024 sourced from the Automated Crash Reporting System (ACRS) of the Maryland State Police. Under the guidance of our professor, Dr. Isuru Dassanayake, Ph.D. in Statistics**
