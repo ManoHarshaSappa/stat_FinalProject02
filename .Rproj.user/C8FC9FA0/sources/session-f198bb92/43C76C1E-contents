@@ -4,7 +4,7 @@ format: html
 editor: visual
 ---
 
-## Project Details:
+## 
 
 ::: {style="text-align:justify"}
 The Dataset, sourced from the Maryland State Police's Automated Crash Reporting System, encompasses traffic collisions in Montgomery County, MD, from 2020 to 2023, comprising 172,106 rows and 43 columns. It provides details on collision dates, locations, vehicle types, driver conditions, and fault attributions, facilitating analysis of collision trends and the development of predictive models for road safety measures. The dataset can be accessed through the following

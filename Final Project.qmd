@@ -4,7 +4,7 @@ format: html
 editor: visual
 ---
 
-## Final Project
+## 
 
 Stat-515-002 (Spring 2024)
 
@@ -18,15 +18,15 @@ Visluzations1 : crash frequency per year
 library(ggplot2)
 library(dplyr)
 
-data = read.csv('/Users/manoharshasappa/Desktop/Stat_Final_project de/CrashReportingDriversData.csv')
-data = na.omit(data)
+# Read data and remove missing values
+data <- read.csv('/Users/manoharshasappa/Desktop/Stat_Final_project de/CrashReportingDriversData.csv')
+data <- na.omit(data)
 
+# Convert Crash.Date.Time to POSIXct format
 date_time <- as.POSIXct(data$Crash.Date.Time, format = "%m/%d/%Y %H:%M")
-date_only <-as.Date(date_time)
+date_only <- as.Date(date_time)
 
-
-#Extracting days of the week and adding to the data frame
-
+# Extract day of the week and add it to the data frame
 day_of_week <- weekdays(date_only)
 data$day_of_week <- day_of_week
 
@@ -128,11 +128,7 @@ top_n <- 10 # You can adjust this value as needed
 top_vehicle_counts <- vehicle_counts %>%
   top_n(top_n, count)
 
-library(ggplot2)
-library(dplyr)
-
 # Your data processing code remains unchanged
-
 # Plotting
 ggplot(top_vehicle_counts, aes(x = reorder(Vehicle.Make, count), y = count)) +
   geom_bar(stat = "identity", fill = "skyblue") +
@@ -290,6 +286,8 @@ print(chi_square_test)
 
 Graph :
 
+![](images/hy4.png){width="1000"}
+
 ```{r}
 # Visualization
 par(mfrow=c(1, 2))  # Set up a 1x2 plotting grid
@@ -304,4 +302,79 @@ ggplot(collision_counts, aes(x = reorder(Traffic.Control, -Collision_Count), y =
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-### Predicting: 1. Can we predict the severity of injuries based on various factors such as weather conditions, road surface conditions, and collision type?
+### Per#1: Can we predict the severity of injuries based on various factors such as weather conditions, road surface conditions, and collision type?
+
+### per#2: Can we predict the extent of vehicle damage in collisions based on collision type, vehicle movement, and speed limit?
+
+```{r}
+library(randomForest)
+library(caret)
+
+# Assuming your dataset is named 'data'
+
+# Select relevant columns for modeling
+selected_cols <- c("Collision.Type", "Vehicle.Movement", "Speed.Limit", "Vehicle.Damage.Extent")
+
+# Subset the data
+vehicle_damage <- data[selected_cols]
+vehicle_damage=na.omit(vehicle_damage)
+
+vehicle_damage[vehicle_damage == "N/A"] <- NA
+
+# Remove rows with any missing values
+vehicle_damage <- na.omit(vehicle_damage)
+
+# Replace blank values with NA
+vehicle_damage[vehicle_damage == ""] <- NA
+
+# Remove rows with any missing values
+vehicle_damage <- na.omit(vehicle_damage)
+
+vehicle_damage$Collision.Type <- as.factor(vehicle_damage$Collision.Type)
+vehicle_damage$Vehicle.Movement <- as.factor(vehicle_damage$Vehicle.Movement)
+vehicle_damage$Vehicle.Damage.Extent <- as.factor(vehicle_damage$Vehicle.Damage.Extent)
+
+set.seed(123)  # For reproducibility
+train_indices <- createDataPartition(vehicle_damage$Vehicle.Damage.Extent, p = 0.8, list = FALSE)
+train_data <- vehicle_damage[train_indices, ]
+test_data <- vehicle_damage[-train_indices, ]
+
+library('rpart')
+# Train the decision tree model
+d_model <- rpart(Vehicle.Damage.Extent ~ ., data = train_data, method = "class")
+
+# Make predictions on the test set
+predictions <- predict(d_model, newdata = test_data, type = "class")
+
+# Calculate accuracy
+accuracy <- mean(predictions == test_data$Vehicle.Damage.Extent)
+
+# Calculate precision, recall, and F1-score using the confusion matrix
+conf_matrix <- table(predictions, test_data$Vehicle.Damage.Extent)
+precision <- diag(conf_matrix) / rowSums(conf_matrix)
+recall <- diag(conf_matrix) / colSums(conf_matrix)
+f1_score <- 2 * precision * recall / (precision + recall)
+
+
+```
+
+```{r}
+print(paste("Accuracy:", accuracy))
+print("Precision:")
+print(precision)
+print("Recall:")
+print(recall)
+print("F1-score:")
+print(f1_score)
+
+# Print confusion matrix
+print("Confusion Matrix:")
+print(conf_matrix)
+```
+
+```{r}
+library('rpart.plot')
+prp(d_model, type = 2, extra = 1, branch = 0.6)
+```
+
+Graph: ![](images/pd2.png){width="1000"}
