@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -176,14 +142,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Stat-515-002 (Spring 2024)</p>
 <p><strong><em>Group Number: 14</em></strong></p>
 <p>Visluzations1 : crash frequency per year</p>
-<div class="cell">
-<pre class="fold cell-code"><code>title: Click to view code
-code: true
----</code></pre>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'/Users/manoharshasappa/Desktop/stat 515 /Final Project Stat/Crash_Reporting_-_Drivers_Data.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p><strong>Columns Used:</strong></p>
 <ul>
 <li><p><strong><code>Crash_Date</code></strong>:</p>
@@ -203,7 +161,7 @@ code: true
 <p>The choice of <strong><code>Crash_Date</code></strong>, <strong><code>Year</code></strong> (derived from <strong><code>Crash_Date</code></strong>), and <strong><code>Num_Crashes</code></strong> is deliberate, aiming to capture key aspects of road accident dynamics in Montgomery County. <strong><code>Crash_Date</code></strong> provides a temporal dimension, vital for spotting trends and seasonal variations in accidents, guiding policy interventions. Derived from <strong><code>Crash_Date</code></strong>, <strong><code>Year</code></strong> facilitates grouping data into yearly intervals, offering a high-level view of crash frequency trends crucial for long-term planning. Complementing this, <strong><code>Num_Crashes</code></strong> quantifies accident frequency, serving as a benchmark for evaluating safety initiatives and identifying areas needing intervention.</p>
 <p><strong>Explanation of the Code:</strong></p>
 <p>The code navigates the dataset methodically, starting with standardizing <strong><code>Crash_Date</code></strong> for temporal analysis. Deriving <strong><code>Year</code></strong> from <strong><code>Crash_Date</code></strong> enables grouping by year for trend assessment. Utilizing <strong><code>dplyr</code></strong>, it aggregates data by year, computing crash counts (<strong><code>Num_Crashes</code></strong>) to synthesize insights. Preparing <strong><code>yearly_crash_data</code></strong> sets the stage for visualization, while <strong><code>ggplot2</code></strong> crafts a visually engaging bar plot of crash frequency per year. This systematic approach transforms raw data into actionable insights, empowering stakeholders with the information needed for effective road safety initiatives.</p>
-<p>visulization 2 :</p>
+<p>visulization 2 : checking</p>
 <ol type="1">
 <li><p><strong>Library Import</strong>: The code begins by importing the <strong><code>leaflet</code></strong> library, which provides functions for creating interactive maps.</p></li>
 <li><p><strong>Map Initialization</strong>: The <strong><code>leaflet()</code></strong> function initializes a leaflet map object.</p></li>
@@ -218,6 +176,7 @@ code: true
 <li><p><strong>Print the Map</strong>: Finally, the <strong><code>map</code></strong> object is printed, which renders the interactive map containing the added tiles and circle markers.</p></li>
 </ol>
 <p>visulization3 :</p>
+<p><img src="images/v3.png" class="img-fluid" width="685"></p>
 <ul>
 <li><p><strong>Vehicle.Make</strong>: This column is used to group the data by vehicle make, as we want to count the number of accidents for each vehicle make.</p></li>
 <li><p><strong>count</strong>: This column is created using <strong><code>summarise()</code></strong> to count the number of accidents for each vehicle make group. It represents the frequency of accidents for each vehicle make.</p>
@@ -261,14 +220,12 @@ code: true
 <li><p><strong>Data Subset</strong>: The dataset is divided into two subsets: one for drivers distracted by electronic devices (<strong><code>electronic_distracted</code></strong>) and another for drivers distracted by other factors (<strong><code>other_distracted</code></strong>).</p></li>
 <li><p><strong>Count Collisions</strong>: The number of collisions is counted separately for drivers distracted by electronic devices and those distracted by other factors.</p></li>
 <li><p><strong>Chi-Square Test</strong>: A chi-square test of independence is performed to assess whether there is a significant difference in collision rates between the two groups of drivers.</p></li>
-<li><p><strong>Interpretation of Results</strong>: The chi-square test results suggest that there is a statistically significant difference in collision rates between drivers distracted by electronic devices and drivers distracted by other factors. This indicates that drivers distracted by electronic devices are more likely to be involved in collisions compared to those distracted by other factors.</p></li>
 </ol>
+<p><strong>Interpretation of Results</strong>: The chi-square test results suggest that there is a statistically significant difference in collision rates between drivers distracted by electronic devices and drivers distracted by other factors. This indicates that drivers distracted by electronic devices are more likely to be involved in collisions compared to those distracted by other factors.</p>
+<p>hypo#4: Can we determine the effectiveness of different traffic control measures (Traffic.Control) in reducing collision rates? Which types of traffic controls are most effective in preventing collisions?</p>
 </section>
 <section id="predicting-1.-can-we-predict-the-severity-of-injuries-based-on-various-factors-such-as-weather-conditions-road-surface-conditions-and-collision-type" class="level3">
 <h3 class="anchored" data-anchor-id="predicting-1.-can-we-predict-the-severity-of-injuries-based-on-various-factors-such-as-weather-conditions-road-surface-conditions-and-collision-type">Predicting: 1. Can we predict the severity of injuries based on various factors such as weather conditions, road surface conditions, and collision type?</h3>
-</section>
-<section id="section" class="level3">
-<h3 class="anchored" data-anchor-id="section"></h3>
 
 
 </section>
