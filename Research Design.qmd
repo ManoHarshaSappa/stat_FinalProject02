@@ -28,22 +28,39 @@ editor: visual
 ::: {style="text-align:justify"}
 ## **Methodologies:**
 
-1.**Crash Frequency per Year**
-    -   Utilizes ggplot2 in R to visualize the frequency of crashes per year by transforming the Crash_Date column into a date format and grouping the data by year.
-2.**Map vs. Deaths**
-    -   Utilizes the Leaflet package in R to create an interactive map displaying crash locations and associated fatalities using latitude and longitude data.
-3.**Top 10 Most car accidents**
-    -   Generates a bar plot using ggplot2 to showcase the top 10 most common vehicle makes involved in accidents, using dplyr for data summarization and arrangement.
-4.**Hypothesis #1: Relationship between Weather Conditions, Daylight, and Injury Severity**
-    -   Conducts a Pearson's Chi-squared test on a contingency table to analyze the association between weather conditions, daylight, and injury severity.
-5.**Hypothesis #2: Vehicle Types and Collision Occurrence during Day and Night**
-    -   Performs a Pearson's Chi-squared test comparing collision counts involving different types of vehicles during the day and at night.
-6.**Hypothesis #3: Effect of Electronic Device Distraction on Collision Rate**
-    -   Conducts a Chi-squared test comparing collision counts between drivers distracted by electronic devices and those distracted by other factors.
-7.**Hypothesis #4: Effectiveness of Traffic Control Measures in Collision Prevention**
-    -   Conducts a Pearson's Chi-squared test between traffic control measures and injury severity to assess effectiveness and identify the most impactful measures.
-8.**Prediction #1: Severity of Injuries Based on Various Factors**
-    -   Utilizes a random forest classification model trained on relevant dataset to predict injury severity.
-9.**Prediction #2: Extent of Vehicle Damage in Collisions**
-    -   Evaluates model performance to predict vehicle damage extent using confusion matrix and key predictors.
+1.**Crash Frequency per Year:**
+
+-   Utilizes ggplot2 in R to visualize the frequency of crashes per year by transforming the Crash_Date column into a date format and grouping the data by year.
+
+2.**Map vs. Deaths**:
+
+-   Utilizes the Leaflet package in R to create an interactive map displaying crash locations and associated fatalities using latitude and longitude data.
+
+3.**Top 10 Most car accidents**:
+
+-   Generates a bar plot using ggplot2 to showcase the top 10 most common vehicle makes involved in accidents, using dplyr for data summarization and arrangement.
+
+4.**Hypothesis #1:**
+
+-   **Relationship between Weather Conditions, Daylight, and Injury Severity** - Conducts a Pearson's Chi-squared test on a contingency table to analyze the association between weather conditions, daylight, and injury severity.
+
+5.**Hypothesis #2:**
+
+-   **Vehicle Types and Collision Occurrence during Day and Night** - Performs a Pearson's Chi-squared test comparing collision counts involving different types of vehicles during the day and at night.
+
+6.**Hypothesis #3:**
+
+-   **Effect of Electronic Device Distraction on Collision Rate** - Conducts a Chi-squared test comparing collision counts between drivers distracted by electronic devices and those distracted by other factors.
+
+7.**Hypothesis #4:**
+
+-   **Effectiveness of Traffic Control Measures in Collision Prevention** - Conducts a Pearson's Chi-squared test between traffic control measures and injury severity to assess effectiveness and identify the most impactful measures.
+
+8.**Prediction #1:**
+
+-   **Severity of Injuries Based on Various Factors** - Utilizes a random forest classification model trained on relevant dataset to predict injury severity.
+
+9.**Prediction #2:**
+
+-   **Extent of Vehicle Damage in Collisions** - Evaluates model performance to predict vehicle damage extent using confusion matrix and key predictors.
 :::
