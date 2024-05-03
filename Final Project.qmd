@@ -2,7 +2,9 @@
 title: "Final Project"
 format: html
 editor: visual
-output: html_document
+output:
+  html_document:
+    code_folding: "hide"
 ---
 
 ## 
@@ -15,8 +17,9 @@ Stat-515-002 (Spring 2024)
 
 ![](images/WhatsApp%20Image%202024-05-01%20at%204.39.04%20PM%20(1)-02.jpeg){width="1000"}
 
-```{r include=FALSE}
-knitr::opts_chunk$set(echo=FALSE)
+<details>
+<summary>Code</summary>
+```{r}
 library(ggplot2)
 library(dplyr)
 
@@ -46,6 +49,7 @@ ggplot(yearly_crash_data, aes(x = Year, y = Num_Crashes)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_y_continuous(labels = scales::comma)
 ```
+</details>
 
 **Columns Used:**
 
@@ -67,6 +71,8 @@ ggplot(yearly_crash_data, aes(x = Year, y = Num_Crashes)) +
 
 ### visualization2 : Map showing accident frequencies
 
+<details>
+<summary>Code</summary>
 ```{r}
 library(leaflet)
 data <- read.csv('/Users/manoharshasappa/Desktop/Stat_Final_project de/CrashReportingDriversData.csv')
@@ -83,6 +89,7 @@ map <- leaflet(data) %>%
 # Print the map
 map
 ```
+</details>
 
 **Columns Used:**
 
@@ -100,8 +107,9 @@ map
 
 ![](images/v3-01.png){width="1000"}\
 
-```{r include=FALSE}
-knitr::opts_chunk$set(echo=FALSE)
+<details>
+<summary>Code</summary>
+```{r}
 vehicle_counts <- data %>%
   group_by(Vehicle.Make) %>%
   summarise(count = n()) %>%
@@ -126,6 +134,7 @@ ggplot(top_vehicle_counts, aes(x = reorder(Vehicle.Make, count), y = count)) +
   coord_flip() +
   theme(plot.margin = unit(c(1, 3, 1, 1), "cm")) 
 ```
+</details>
 
 **Columns Used:**
 
@@ -145,8 +154,9 @@ The code you provided performs a chi-square test of independence to determine wh
 
 -   The chi-square test is then applied to assess whether these variables are independent of each other or if there is a relationship between them.
 
-```{r include=FALSE}
-knitr::opts_chunk$set(echo=FALSE)
+<details>
+<summary>Code</summary>
+```{r}
 # Contingency table of Weather, Light, and Injury Severity
 contingency_table <- table(data$Weather, data$Light, data$Injury.Severity)
 
@@ -160,6 +170,7 @@ chi_square_test <- chisq.test(contingency_table)
 # Print the test results
 print(chi_square_test)
 ```
+</details>
 
 ![](images/h1.png){width="1000"}
 
@@ -179,8 +190,9 @@ The code aims to determine whether certain types of vehicles are more likely to 
 
 ![](images/h2.png){width="1000"}
 
-```{r include=FALSE}
-knitr::opts_chunk$set(echo=FALSE)
+<details>
+<summary>Code</summary>
+```{r}
 # Subset data for collisions during the day and at night
 collisions_day <- subset(data, Light == "DAYLIGHT")
 collisions_night <- subset(data, Light == "DARK LIGHTS ON")
@@ -195,6 +207,7 @@ chi_square_test <- chisq.test(counts_day, counts_night)
 # Print the test results
 print(chi_square_test)
 ```
+</details>
 
 ::: {style="text-align:justify"}
 **Interpretation of Results**: The question is investigating whether certain types of vehicles are more prone to being involved in collisions at night compared to during the day. To analyze this, a Pearson's Chi-squared test was conducted comparing the counts of collisions involving different types of vehicles during the day and at night. The output indicates that there is no significant difference in the distribution of collisions across different types of vehicles between day and night, with a p-value of 0.2408. This suggests that the likelihood of different types of vehicles being involved in collisions is similar during both day and night.
@@ -212,8 +225,9 @@ The analysis aims to determine whether drivers distracted by electronic devices 
 
 ![](images/h3.png){width="1000"}
 
-```{r include=FALSE}
-knitr::opts_chunk$set(echo=FALSE)
+<details>
+<summary>Code</summary>
+```{r}
 # Subset the data for drivers distracted by electronic devices
 electronic_distracted <- subset(data, Driver.Distracted.By == "ELECTRONIC DEVICE")
 
@@ -230,6 +244,7 @@ chi_square_test <- chisq.test(c(counts_electronic, counts_other))
 # Print the test results
 print(chi_square_test)
 ```
+</details>
 
 ::: {style="text-align:justify"}
 **Interpretation of Results**: The question aims to determine if drivers distracted by electronic devices have a higher collision rate compared to those distracted by other factors. To analyze this, a Chi-squared test was conducted comparing the collision counts between drivers distracted by electronic devices and those distracted by other factors. The output indicates a significant difference between the two groups, with a very low p-value (p \< 2.2e-16). This suggests that drivers distracted by electronic devices indeed have a significantly higher collision rate compared to those distracted by other factors.
@@ -237,29 +252,55 @@ print(chi_square_test)
 
 ### hypo#4: Can we determine the effectiveness of different traffic control measures (Traffic.Control) in reducing collision rates? Which types of traffic controls are most effective in preventing collisions?
 
-```{}
-```
-
 ![](images/h4.png){width="1000"}
 
-Graph :
-
+### Graph :
 ![](images/hy4.png){width="1000"}
 
-```{r include=FALSE}
-knitr::opts_chunk$set(echo=FALSE)
+<details>
+<summary>Code</summary>
+```{r}
+# Subset the dataset to include only the required columns
+traffic_data <- data[, c("Traffic.Control", "Injury.Severity")]
+# Remove rows with any missing values
+traffic_data <- na.omit(traffic_data)
+
+library(ggplot2)
+library(dplyr)
+
+traffic_data[traffic_data == "N/A"] <- NA
+
+# Remove rows with any missing values
+traffic_data <- na.omit(traffic_data)
+
+# Check if there are any missing values left
+print(sum(is.na(traffic_data)))
+collision_counts <- traffic_data %>%
+  group_by(Traffic.Control) %>%
+  summarise(Collision_Count = n())
+
+# Calculate collision rates for each traffic control type
+total_collisions <- nrow(traffic_data)
+collision_rates <- collision_counts %>%
+  mutate(Collision_Rate = Collision_Count / total_collisions)
+
+# Statistical Analysis
+# Perform chi-square test to compare collision rates between different traffic controls
+chi_square_test <- chisq.test(traffic_data$Traffic.Control, traffic_data$Injury.Severity)
+
 # Visualization
-### par(mfrow=c(1, 2))  # Set up a 1x2 plotting grid
+par(mfrow=c(1, 2))  # Set up a 1x2 plotting grid
 
 # Create a bar plot using ggplot2
-### ggplot(collision_counts, aes(x = reorder(Traffic.Control, -Collision_Count), y = Collision_Count)) +
-###  geom_bar(stat = "identity", fill = "skyblue") +
-###  labs(title = "Collision Counts by Traffic Control Type",
-       ### x = "Traffic Control Type",
-       ### y = "Collision Count") +
-### theme_minimal() +
-### theme(axis.text.x = element_text(angle = 45, hjust = 1))
+ggplot(collision_counts, aes(x = reorder(Traffic.Control, -Collision_Count), y = Collision_Count)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  labs(title = "Collision Counts by Traffic Control Type",
+       x = "Traffic Control Type",
+       y = "Collision Count") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
+</details>
 
 ::: {style="text-align:justify"}
 **Interpretation of Results**: The question investigates whether different types of traffic control measures are effective in reducing collision rates and which ones are most effective. To analyze this, a Pearson's Chi-squared test was conducted between the types of traffic control measures and the severity of injuries resulting from collisions. The output shows a significant relationship between the two variables, with a very low p-value (p \< 2.2e-16). This suggests that the effectiveness of traffic control measures in preventing collisions varies significantly across different types. However, further analysis would be needed to determine which specific types of traffic controls are most effective in reducing collision rates and severity of injuries.
@@ -267,9 +308,12 @@ knitr::opts_chunk$set(echo=FALSE)
 
 ### Per#1: Can we predict the severity of injuries based on various factors such as weather conditions, road surface conditions, and collision type?
 
+<details>
+<summary>Code</summary>
 ```{r}
 ### sadfdf
 ```
+</details>
 
 ::: {style="text-align:justify"}
 **Interpretation of Results**: The question aims to predict the severity of injuries resulting from collisions based on various factors such as weather conditions, road surface conditions, and collision types. The output is from a random forest classification model trained on a dataset (train_data). The model's accuracy is approximately 80.69%, indicating its ability to predict injury severity.
@@ -283,8 +327,9 @@ Overall, the output suggests that weather conditions, road surface conditions, a
 
 ### per#2: Can we predict the extent of vehicle damage in collisions based on collision type, vehicle movement, and speed limit?
 
-```{r include=FALSE}
-knitr::opts_chunk$set(echo=FALSE)
+<details>
+<summary>Code</summary>
+```{r}
 library(randomForest)
 library(caret)
 
@@ -333,11 +378,6 @@ precision <- diag(conf_matrix) / rowSums(conf_matrix)
 recall <- diag(conf_matrix) / colSums(conf_matrix)
 f1_score <- 2 * precision * recall / (precision + recall)
 
-
-```
-
-```{r include=FALSE}
-knitr::opts_chunk$set(echo=FALSE)
 print(paste("Accuracy:", accuracy))
 print("Precision:")
 print(precision)
@@ -350,29 +390,33 @@ print(f1_score)
 print("Confusion Matrix:")
 print(conf_matrix)
 ```
+</details>
 
-### Accuracy : 
+### Accuracy :
 
-![](images/WhatsApp Image 2024-05-03 at 11.24.47 AM.jpeg){fig-align="center"}
+![](images/WhatsApp%20Image%202024-05-03%20at%2011.24.47%20AM.jpeg){fig-align="center"}
 
 ### Precision :
 
-![](images/WhatsApp Image 2024-05-03 at 11.24.47 AM (1)-01.jpeg){fig-align="left"}
+![](images/WhatsApp Image 2024-05-03 at 11.58.44 AM.jpeg)
 
 ### Recall :
 
-![](images/WhatsApp Image 2024-05-03 at 11.24.47 AM (2)-01.jpeg)
+![](images/WhatsApp Image 2024-05-03 at 11.58.44 AM (1).jpeg)
 
 ### F1_score :
 
-![](images/WhatsApp Image 2024-05-03 at 11.24.47 AM (3)-01.jpeg)
+![](images/WhatsApp Image 2024-05-03 at 11.58.43 AM.jpeg)
 
-```{r include=FALSE}
-knitr::opts_chunk$set(echo=FALSE)
+### 
+<details>
+
+<summary>Code</summary>
+```{r}
 library('rpart.plot')
 prp(d_model, type = 2, extra = 1, branch = 0.6)
 ```
-
+</details>
 ### Graph :
 
 ![](images/pd2.png){width="1000"}
