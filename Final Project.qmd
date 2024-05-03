@@ -13,10 +13,9 @@ Stat-515-002 (Spring 2024)
 
 ***Group Number: 14***
 
-### Visualization1 : crash frequency per year
+## Visualization1 : crash frequency per year
 
 ![](images/WhatsApp%20Image%202024-05-01%20at%204.39.04%20PM%20(1)-02.jpeg){width="1000"}
-
 <details>
 <summary>Code</summary>
 ```{r}
@@ -69,8 +68,7 @@ ggplot(yearly_crash_data, aes(x = Year, y = Num_Crashes)) +
 **Explanation of the Code:** This visualizes the frequency of crashes per year using ggplot2 in R. Initially, it converts the "Crash_Date" column into a date format and extracts the year from it. Then, it groups the data by year and calculates the number of crashes that occurred each year.
 :::
 
-### visualization2 : Map showing accident frequencies
-
+## visualization2 : Map showing accident frequencies
 <details>
 <summary>Code</summary>
 ```{r}
@@ -90,7 +88,6 @@ map <- leaflet(data) %>%
 map
 ```
 </details>
-
 **Columns Used:**
 
 -   **Longitude:** Longitude coordinates are essential for accurately positioning each incident on the map.
@@ -103,10 +100,9 @@ map
 **Explanation of the Code:** This utilizes the Leaflet package in R to generate an interactive map. It begins by loading Leaflet and then initializes a map object. Using latitude and longitude data from a dataframe named 'data', it places circle markers on the map to represent specific locations, like crash sites. Each marker includes a popup and label showing the associated report number. Finally, it prints the interactive map, allowing users to explore the locations and corresponding report numbers within the R environment.
 :::
 
-### visualization3 : Most car accidents
+## visualization3 : Most car accidents
 
 ![](images/v3-01.png){width="1000"}\
-
 <details>
 <summary>Code</summary>
 ```{r}
@@ -142,7 +138,7 @@ ggplot(top_vehicle_counts, aes(x = reorder(Vehicle.Make, count), y = count)) +
 
 -   **count**: This column is created using **`summarise()`** to count the number of accidents for each vehicle make group. It represents the frequency of accidents for each vehicle make. ::: {style="text-align:justify"} **Explanation of the Code:** This generates a bar plot showing the top 10 most common vehicle makes involved in accidents, with vehicle make names on the y-axis and the number of accidents on the x-axis. It uses dplyr to summarize and arrange the data, then ggplot2 for visualization.Hypothesis: :::
 
-### hypo#1. is there any relation between weather condition, day light and injury severity
+## hypo#1. is there any relation between weather condition, day light and injury severity
 
 The code you provided performs a chi-square test of independence to determine whether there is a statistically significant association between weather condition, light condition, and injury severity in traffic accidents. Here's an explanation of why this test was conducted and what was observed:
 
@@ -154,6 +150,7 @@ The code you provided performs a chi-square test of independence to determine wh
 
 -   The chi-square test is then applied to assess whether these variables are independent of each other or if there is a relationship between them.
 
+![](images/h1.png){width="1000"}
 <details>
 <summary>Code</summary>
 ```{r}
@@ -172,13 +169,11 @@ print(chi_square_test)
 ```
 </details>
 
-![](images/h1.png){width="1000"}
-
 ::: {style="text-align:justify"}
 **Interpretation of Results**: The question is asking if there's any relationship between weather conditions, daylight, and injury severity in accidents. To analyze this, a Pearson's Chi-squared test was conducted on the contingency table. The output indicates a significant relationship between these variables, with a very low p-value (p \< 2.2e-16). This suggests that the observed frequencies of injury severity across different weather conditions and daylight statuses are unlikely to have occurred by chance alone, indicating a strong association between these factors.
 :::
 
-### hypo#2. Are certain types of vehicles more likely to be involved in collisions at night compared to during the day?
+## hypo#2. Are certain types of vehicles more likely to be involved in collisions at night compared to during the day?
 
 The code aims to determine whether certain types of vehicles are more likely to be involved in collisions at night compared to during the day. Here's a clear interpretation of the analysis:
 
@@ -189,7 +184,6 @@ The code aims to determine whether certain types of vehicles are more likely to 
 **Chi-Square Test**: A chi-square test of independence is performed to assess whether there is a significant association between vehicle types and the time of the collision (day or night).
 
 ![](images/h2.png){width="1000"}
-
 <details>
 <summary>Code</summary>
 ```{r}
@@ -213,7 +207,7 @@ print(chi_square_test)
 **Interpretation of Results**: The question is investigating whether certain types of vehicles are more prone to being involved in collisions at night compared to during the day. To analyze this, a Pearson's Chi-squared test was conducted comparing the counts of collisions involving different types of vehicles during the day and at night. The output indicates that there is no significant difference in the distribution of collisions across different types of vehicles between day and night, with a p-value of 0.2408. This suggests that the likelihood of different types of vehicles being involved in collisions is similar during both day and night.
 :::
 
-### hypo#3. Do drivers distracted by electronic devices have a higher rate of collisions compared to drivers distracted by other factors?
+## hypo#3. Do drivers distracted by electronic devices have a higher rate of collisions compared to drivers distracted by other factors?
 
 The analysis aims to determine whether drivers distracted by electronic devices have a higher rate of collisions compared to drivers distracted by other factors. Here's a clear interpretation of the results:
 
@@ -224,7 +218,6 @@ The analysis aims to determine whether drivers distracted by electronic devices 
 3.  **Chi-Square Test**: A chi-square test of independence is performed to assess whether there is a significant difference in collision rates between the two groups of drivers.
 
 ![](images/h3.png){width="1000"}
-
 <details>
 <summary>Code</summary>
 ```{r}
@@ -250,7 +243,7 @@ print(chi_square_test)
 **Interpretation of Results**: The question aims to determine if drivers distracted by electronic devices have a higher collision rate compared to those distracted by other factors. To analyze this, a Chi-squared test was conducted comparing the collision counts between drivers distracted by electronic devices and those distracted by other factors. The output indicates a significant difference between the two groups, with a very low p-value (p \< 2.2e-16). This suggests that drivers distracted by electronic devices indeed have a significantly higher collision rate compared to those distracted by other factors.
 :::
 
-### hypo#4: Can we determine the effectiveness of different traffic control measures (Traffic.Control) in reducing collision rates? Which types of traffic controls are most effective in preventing collisions?
+## hypo#4: Can we determine the effectiveness of different traffic control measures (Traffic.Control) in reducing collision rates? Which types of traffic controls are most effective in preventing collisions?
 
 ![](images/h4.png){width="1000"}
 
@@ -306,7 +299,9 @@ ggplot(collision_counts, aes(x = reorder(Traffic.Control, -Collision_Count), y =
 **Interpretation of Results**: The question investigates whether different types of traffic control measures are effective in reducing collision rates and which ones are most effective. To analyze this, a Pearson's Chi-squared test was conducted between the types of traffic control measures and the severity of injuries resulting from collisions. The output shows a significant relationship between the two variables, with a very low p-value (p \< 2.2e-16). This suggests that the effectiveness of traffic control measures in preventing collisions varies significantly across different types. However, further analysis would be needed to determine which specific types of traffic controls are most effective in reducing collision rates and severity of injuries.
 :::
 
-### Per#1: Can we predict the severity of injuries based on various factors such as weather conditions, road surface conditions, and collision type?
+## Per#1: Can we predict the severity of injuries based on various factors such as weather conditions, road surface conditions, and collision type?
+
+### graph ; 
 
 <details>
 <summary>Code</summary>
@@ -325,8 +320,23 @@ The confusion matrix reveals the number of correct and incorrect predictions for
 Overall, the output suggests that weather conditions, road surface conditions, and collision types are significant factors in predicting the severity of injuries resulting from collisions, with "Collision.Type" being the most important predictor.
 :::
 
-### per#2: Can we predict the extent of vehicle damage in collisions based on collision type, vehicle movement, and speed limit?
+## per#2: Can we predict the extent of vehicle damage in collisions based on collision type, vehicle movement, and speed limit?
 
+### Accuracy :
+
+![](images/WhatsApp%20Image%202024-05-03%20at%2011.24.47%20AM.jpeg){fig-align="center"}
+
+### Precision :
+
+![](images/WhatsApp Image 2024-05-03 at 11.58.44 AM.jpeg)
+
+### Recall :
+
+![](images/WhatsApp Image 2024-05-03 at 11.58.44 AM (1).jpeg)
+
+### F1_score :
+
+![](images/WhatsApp Image 2024-05-03 at 11.58.43 AM.jpeg)
 <details>
 <summary>Code</summary>
 ```{r}
@@ -391,35 +401,15 @@ print("Confusion Matrix:")
 print(conf_matrix)
 ```
 </details>
-
-### Accuracy :
-
-![](images/WhatsApp%20Image%202024-05-03%20at%2011.24.47%20AM.jpeg){fig-align="center"}
-
-### Precision :
-
-![](images/WhatsApp Image 2024-05-03 at 11.58.44 AM.jpeg)
-
-### Recall :
-
-![](images/WhatsApp Image 2024-05-03 at 11.58.44 AM (1).jpeg)
-
-### F1_score :
-
-![](images/WhatsApp Image 2024-05-03 at 11.58.43 AM.jpeg)
-
-### 
+### Graph :
+![](images/pd2.png){width="1000"}
 <details>
-
 <summary>Code</summary>
 ```{r}
 library('rpart.plot')
 prp(d_model, type = 2, extra = 1, branch = 0.6)
 ```
 </details>
-### Graph :
-
-![](images/pd2.png){width="1000"}
 
 ::: {style="text-align:justify"}
 **Interpretation of Results**: The output shows the performance of a model that predicts the extent of vehicle damage in collisions. It's about 45% accurate overall. The model is better at predicting certain types of damage, like "DISABLING," but not so good at others, like "DESTROYED" or "NO DAMAGE." The confusion matrix gives details on predictions versus actual outcomes. The most crucial factors for prediction are collision type, vehicle movement, and speed limit. Collision type is the most important, followed by vehicle movement and speed limit.

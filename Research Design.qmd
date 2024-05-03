@@ -3,4 +3,47 @@ title: "Research Design"
 editor: visual
 ---
 
-asdf
+::: {style="text-align:justify"}
+## **Research Questions:**
+
+#### **Visualization**1: Crash Frequency per Year
+
+#### **Visualization**2: Map vs. Deaths
+
+#### **Visualization**3: Top 10 Most car accidents
+
+#### **Hypothesis #1:** Is there any relation between weather conditions, daylight, and injury severity?
+
+#### **Hypothesis #2:** Are certain types of vehicles more likely to be involved in collisions at night compared to during the day?
+
+#### **Hypothesis #3:** Do drivers distracted by electronic devices have a higher rate of collisions compared to drivers distracted by other factors?
+
+#### **Hypothesis #4:** Can we determine the effectiveness of different traffic control measures in reducing collision rates? Which types of traffic controls are most effective in preventing collisions?
+
+### Prediction #1: Can we predict the severity of injuries based on various factors such as weather conditions, road surface conditions, and collision type?
+
+### Prediction #2: Can we predict the extent of vehicle damage in collisions based on collision type, vehicle movement, and speed limit?
+:::
+
+::: {style="text-align:justify"}
+## **Methodologies:**
+
+1.**Crash Frequency per Year**
+    -   Utilizes ggplot2 in R to visualize the frequency of crashes per year by transforming the Crash_Date column into a date format and grouping the data by year.
+2.**Map vs. Deaths**
+    -   Utilizes the Leaflet package in R to create an interactive map displaying crash locations and associated fatalities using latitude and longitude data.
+3.**Top 10 Most car accidents**
+    -   Generates a bar plot using ggplot2 to showcase the top 50 most common vehicle makes involved in accidents, using dplyr for data summarization and arrangement.
+4.**Hypothesis #1: Relationship between Weather Conditions, Daylight, and Injury Severity**
+    -   Conducts a Pearson's Chi-squared test on a contingency table to analyze the association between weather conditions, daylight, and injury severity.
+5.**Hypothesis #2: Vehicle Types and Collision Occurrence during Day and Night**
+    -   Performs a Pearson's Chi-squared test comparing collision counts involving different types of vehicles during the day and at night.
+6.**Hypothesis #3: Effect of Electronic Device Distraction on Collision Rate**
+    -   Conducts a Chi-squared test comparing collision counts between drivers distracted by electronic devices and those distracted by other factors.
+7.**Hypothesis #4: Effectiveness of Traffic Control Measures in Collision Prevention**
+    -   Conducts a Pearson's Chi-squared test between traffic control measures and injury severity to assess effectiveness and identify the most impactful measures.
+8.**Prediction #1: Severity of Injuries Based on Various Factors**
+    -   Utilizes a random forest classification model trained on relevant dataset to predict injury severity.
+9.**Prediction #2: Extent of Vehicle Damage in Collisions**
+    -   Evaluates model performance to predict vehicle damage extent using confusion matrix and key predictors.
+:::

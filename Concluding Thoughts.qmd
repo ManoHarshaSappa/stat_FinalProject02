@@ -2,3 +2,9 @@
 title: "Conclusion"
 editor: visual
 ---
+
+::: {style="text-align:justify"}
+In conclusion, the Research Design encompasses a comprehensive methodology to investigate various aspects of road safety and collision outcomes. Through a series of questions, data visualizations, hypothesis testing, and predictive modeling, the research aims to provide valuable insights into crash patterns, injury severity determinants, and predictive capabilities. The data visualizations, including crash frequency per year, geographical distribution of fatalities, and the most common vehicle makes involved in accidents, offer a clear understanding of the trends and patterns in collision occurrences. Hypothesis testing delves into the relationships between factors such as weather conditions, vehicle types, and collision rates, providing empirical evidence to support or refute the proposed hypotheses. Additionally, predictive modeling endeavors to forecast injury severity and vehicle damage extent based on various contributing factors, offering practical applications for enhancing road safety measures. Overall, the Research Design serves as a foundational framework for the subsequent analysis and interpretation of data, ultimately aiming to contribute to the development of effective strategies for accident prevention and mitigation.
+:::
+
+### References: 
