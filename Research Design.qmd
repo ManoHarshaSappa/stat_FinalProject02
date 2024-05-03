@@ -4,8 +4,6 @@ editor: visual
 ---
 
 ::: {style="text-align:justify"}
-## **Research Questions:**
-
 #### **Visualization**1: Crash Frequency per Year
 
 #### **Visualization**2: Map vs. Deaths
