@@ -13,8 +13,8 @@ website:
     - Concluding Thoughts.qmd
     - Resource Repository.qmd
     - About Us.qmd
-   
- 
+
 format: 
   html: 
-    theme: Sidebar Navigation
+    theme: MyCustomTheme 
+    
