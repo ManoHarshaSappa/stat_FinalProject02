@@ -11,8 +11,6 @@ website:
     - Research Design.qmd
     - Final Project.qmd
     - Concluding Thoughts.qmd
-    - Resource Repository.qmd
-    - About Us.qmd
 
 format: 
   html: 
