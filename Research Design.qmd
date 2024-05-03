@@ -33,7 +33,7 @@ editor: visual
 2.**Map vs. Deaths**
     -   Utilizes the Leaflet package in R to create an interactive map displaying crash locations and associated fatalities using latitude and longitude data.
 3.**Top 10 Most car accidents**
-    -   Generates a bar plot using ggplot2 to showcase the top 50 most common vehicle makes involved in accidents, using dplyr for data summarization and arrangement.
+    -   Generates a bar plot using ggplot2 to showcase the top 10 most common vehicle makes involved in accidents, using dplyr for data summarization and arrangement.
 4.**Hypothesis #1: Relationship between Weather Conditions, Daylight, and Injury Severity**
     -   Conducts a Pearson's Chi-squared test on a contingency table to analyze the association between weather conditions, daylight, and injury severity.
 5.**Hypothesis #2: Vehicle Types and Collision Occurrence during Day and Night**
