@@ -1,18 +1,28 @@
 ---
 title: "Conclusion"
+format:
+  html:
+    toc: true
+    number-sections: true
+    css: styles.css
 editor: visual
+output:
+  html_document:
+    code_folding: "hide"
 ---
 
 ::: {style="text-align:justify"}
 In conclusion, the Research Design encompasses a comprehensive methodology to investigate various aspects of road safety and collision outcomes. Through a series of questions, data visualizations, hypothesis testing, and predictive modeling, the research aims to provide valuable insights into crash patterns, injury severity determinants, and predictive capabilities. The data visualizations, including crash frequency per year, geographical distribution of fatalities, and the most common vehicle makes involved in accidents, offer a clear understanding of the trends and patterns in collision occurrences. Hypothesis testing delves into the relationships between factors such as weather conditions, vehicle types, and collision rates, providing empirical evidence to support or refute the proposed hypotheses. Additionally, predictive modeling endeavors to forecast injury severity and vehicle damage extent based on various contributing factors, offering practical applications for enhancing road safety measures. Overall, the Research Design serves as a foundational framework for the subsequent analysis and interpretation of data, ultimately aiming to contribute to the development of effective strategies for accident prevention and mitigation.
 :::
 
+## Future Questions: 
+
 ::: {style="text-align:justify"}
-### Future questions: 
-1. How do collisions contribute to environmental pollution and habitat destruction, and how can this information be used to guide urban planning and development decisions?
-2. How can data from in-vehicle telematics systems be integrated with collision data to provide more accurate risk assessments?
+Future questions: 1. How do collisions contribute to environmental pollution and habitat destruction, and how can this information be used to guide urban planning and development decisions? 2. How can data from in-vehicle telematics systems be integrated with collision data to provide more accurate risk assessments?
 :::
+
+## References: 
+
 ::: {style="text-align:justify"}
-### References: 
 Montgomery County of Maryland - Crash reporting - Drivers data. (2024, February 9). url: https://catalog.data.gov/dataset/crash-reporting-drivers-data.
 :::

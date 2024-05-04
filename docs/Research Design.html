@@ -68,9 +68,10 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
+<link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -118,7 +119,9 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -142,41 +145,41 @@ ul.task-list li input[type="checkbox"] {
 
 
 <div style="text-align:justify">
-<section id="visualization-1-what-are-the-trends-in-the-frequency-of-car-crashes-over-years" class="level3">
-<h3 class="anchored" data-anchor-id="visualization-1-what-are-the-trends-in-the-frequency-of-car-crashes-over-years"><strong>Visualization 1:</strong> What are the trends in the frequency of car crashes over years?</h3>
+<section id="visualization1-what-are-the-trends-in-the-frequency-of-car-crashes-over-years" class="level3" data-number="0.1">
+<h3 data-number="0.1" class="anchored" data-anchor-id="visualization1-what-are-the-trends-in-the-frequency-of-car-crashes-over-years"><span class="header-section-number">0.1</span> <strong>1. Visualization1:</strong> What are the trends in the frequency of car crashes over years?</h3>
 <div style="text-align:justify">
 <p><strong>Methodology -</strong> To analyze the trend of crash frequency over the years, we will use ggplot2 in R. This allows us to create visual representations of data. We’ll transform the Crash_Date column into a date format and group the data by year. By visualizing this data, we can identify any noticeable patterns or trends in crash frequency over time.</p>
 </div>
 </section>
-<section id="visualization-2-how-does-the-distribution-of-car-accidents-vary-geographically" class="level3">
-<h3 class="anchored" data-anchor-id="visualization-2-how-does-the-distribution-of-car-accidents-vary-geographically"><strong>Visualization 2: How does the distribution of car accidents vary geographically?</strong></h3>
+<section id="visualization2-how-does-the-distribution-of-car-accidents-vary-geographically" class="level3" data-number="0.2">
+<h3 data-number="0.2" class="anchored" data-anchor-id="visualization2-how-does-the-distribution-of-car-accidents-vary-geographically"><span class="header-section-number">0.2</span> <strong>2. Visualization2: How does the distribution of car accidents vary geographically?</strong></h3>
 <div style="text-align:justify">
 <p><strong>Methodology -</strong> To understand the geographical distribution of car accidents, we will utilize the Leaflet package in R. This package enables us to create interactive maps displaying crash locations and associated fatalities using latitude and longitude data. By visualizing this data on a map, we can identify any geographic patterns or hotspots where accidents are more prevalent.</p>
 </div>
 </section>
-<section id="visualization-3-top-10-cars-which-involve-in-car-cashes" class="level3">
-<h3 class="anchored" data-anchor-id="visualization-3-top-10-cars-which-involve-in-car-cashes"><strong>Visualization 3: Top 10 cars which involve in car cashes?</strong></h3>
+<section id="visualization3-top-10-cars-which-involve-in-car-cashes" class="level3" data-number="0.3">
+<h3 data-number="0.3" class="anchored" data-anchor-id="visualization3-top-10-cars-which-involve-in-car-cashes"><span class="header-section-number">0.3</span> <strong>3. Visualization3: Top 10 cars which involve in car cashes?</strong></h3>
 <div style="text-align:justify">
 <p><strong>Methodology -</strong> To identify the top 10 car manufacturers involved in car accidents, we will generate a bar plot using ggplot2 in R. This plot will showcase the most common vehicle makes involved in accidents. We’ll use dplyr for data summarization and arrangement to identify the top 10 manufacturers based on accident frequency.</p>
 </div>
 </section>
-<section id="hypothesis-1-is-there-any-relation-between-weather-conditions-daylight-and-injury-severity" class="level3">
-<h3 class="anchored" data-anchor-id="hypothesis-1-is-there-any-relation-between-weather-conditions-daylight-and-injury-severity"><strong>Hypothesis #1: Is there any relation between weather conditions, daylight, and injury severity?</strong></h3>
+<section id="hypothesis-1-is-there-any-relation-between-weather-conditions-daylight-and-injury-severity" class="level3" data-number="0.4">
+<h3 data-number="0.4" class="anchored" data-anchor-id="hypothesis-1-is-there-any-relation-between-weather-conditions-daylight-and-injury-severity"><span class="header-section-number">0.4</span> <strong>4. Hypothesis #1: Is there any relation between weather conditions, daylight, and injury severity?</strong></h3>
 <p>Question: - Is there any relation between weather conditions, daylight, and injury severity?</p>
 <div style="text-align:justify">
 <p><strong>Methodology -</strong> To test this hypothesis, we will conduct a Pearson’s Chi-squared test on a contingency table. This test will analyze the association between weather conditions, daylight, and injury severity. By examining the relationship between these variables statistically, we can determine if there’s a significant correlation between them.</p>
 </div>
 </section>
-<section id="hypothesis-2-are-certain-types-of-vehicles-more-likely-to-be-involved-in-collisions-at-night-compared-to-during-the-day" class="level3">
-<h3 class="anchored" data-anchor-id="hypothesis-2-are-certain-types-of-vehicles-more-likely-to-be-involved-in-collisions-at-night-compared-to-during-the-day"><strong>Hypothesis #2: Are certain types of vehicles more likely to be involved in collisions at night compared to during the day?</strong></h3>
+<section id="hypothesis-2-are-certain-types-of-vehicles-more-likely-to-be-involved-in-collisions-at-night-compared-to-during-the-day" class="level3" data-number="0.5">
+<h3 data-number="0.5" class="anchored" data-anchor-id="hypothesis-2-are-certain-types-of-vehicles-more-likely-to-be-involved-in-collisions-at-night-compared-to-during-the-day"><span class="header-section-number">0.5</span> <strong>5. Hypothesis #2: Are certain types of vehicles more likely to be involved in collisions at night compared to during the day?</strong></h3>
 <div style="text-align:justify">
 <div style="text-align:justify">
 <p><strong>Methodology -</strong> To investigate this hypothesis, we will perform a Pearson’s Chi-squared test comparing collision counts involving different types of vehicles during the day and at night. By statistically analyzing collision data, we can determine if certain vehicle types are more prone to accidents during specific times of the day.</p>
 </div>
 </div>
 </section>
-<section id="hypothesis-3-do-drivers-distracted-by-electronic-devices-have-a-higher-rate-of-collisions-compared-to-drivers-distracted-by-other-factors" class="level3">
-<h3 class="anchored" data-anchor-id="hypothesis-3-do-drivers-distracted-by-electronic-devices-have-a-higher-rate-of-collisions-compared-to-drivers-distracted-by-other-factors"><strong>Hypothesis #3: Do drivers distracted by electronic devices have a higher rate of collisions compared to drivers distracted by other factors?</strong></h3>
+<section id="hypothesis-3-do-drivers-distracted-by-electronic-devices-have-a-higher-rate-of-collisions-compared-to-drivers-distracted-by-other-factors" class="level3" data-number="0.6">
+<h3 data-number="0.6" class="anchored" data-anchor-id="hypothesis-3-do-drivers-distracted-by-electronic-devices-have-a-higher-rate-of-collisions-compared-to-drivers-distracted-by-other-factors"><span class="header-section-number">0.6</span> <strong>6. Hypothesis #3: Do drivers distracted by electronic devices have a higher rate of collisions compared to drivers distracted by other factors?</strong></h3>
 <div style="text-align:justify">
 <div style="text-align:justify">
 <div style="text-align:justify">
@@ -185,8 +188,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="hypothesis-4-can-we-determine-the-effectiveness-of-different-traffic-control-measures-in-reducing-collision-rates-which-types-of-traffic-controls-are-most-effective-in-preventing-collisions" class="level3">
-<h3 class="anchored" data-anchor-id="hypothesis-4-can-we-determine-the-effectiveness-of-different-traffic-control-measures-in-reducing-collision-rates-which-types-of-traffic-controls-are-most-effective-in-preventing-collisions"><strong>Hypothesis #4: Can we determine the effectiveness of different traffic control measures in reducing collision rates? Which types of traffic controls are most effective in preventing collisions?</strong></h3>
+<section id="hypothesis-4-can-we-determine-the-effectiveness-of-different-traffic-control-measures-in-reducing-collision-rates-which-types-of-traffic-controls-are-most-effective-in-preventing-collisions" class="level3" data-number="0.7">
+<h3 data-number="0.7" class="anchored" data-anchor-id="hypothesis-4-can-we-determine-the-effectiveness-of-different-traffic-control-measures-in-reducing-collision-rates-which-types-of-traffic-controls-are-most-effective-in-preventing-collisions"><span class="header-section-number">0.7</span> <strong>7. Hypothesis #4: Can we determine the effectiveness of different traffic control measures in reducing collision rates? Which types of traffic controls are most effective in preventing collisions?</strong></h3>
 <div style="text-align:justify">
 <div style="text-align:justify">
 <div style="text-align:justify">
@@ -195,8 +198,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="prediction-1-can-we-predict-the-severity-of-injuries-based-on-various-factors-such-as-weather-conditions-road-surface-conditions-and-collision-type" class="level3">
-<h3 class="anchored" data-anchor-id="prediction-1-can-we-predict-the-severity-of-injuries-based-on-various-factors-such-as-weather-conditions-road-surface-conditions-and-collision-type"><strong>Prediction #1: Can we predict the severity of injuries based on various factors such as weather conditions, road surface conditions, and collision type?</strong></h3>
+<section id="prediction-1-can-we-predict-the-severity-of-injuries-based-on-various-factors-such-as-weather-conditions-road-surface-conditions-and-collision-type" class="level3" data-number="0.8">
+<h3 data-number="0.8" class="anchored" data-anchor-id="prediction-1-can-we-predict-the-severity-of-injuries-based-on-various-factors-such-as-weather-conditions-road-surface-conditions-and-collision-type"><span class="header-section-number">0.8</span> <strong>8. Prediction #1: Can we predict the severity of injuries based on various factors such as weather conditions, road surface conditions, and collision type?</strong></h3>
 <div style="text-align:justify">
 <div style="text-align:justify">
 <div style="text-align:justify">
@@ -205,8 +208,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="prediction-2-can-we-predict-the-extent-of-vehicle-damage-in-collisions-based-on-collision-type-vehicle-movement-and-speed-limit" class="level3">
-<h3 class="anchored" data-anchor-id="prediction-2-can-we-predict-the-extent-of-vehicle-damage-in-collisions-based-on-collision-type-vehicle-movement-and-speed-limit"><strong>Prediction #2: Can we predict the extent of vehicle damage in collisions based on collision type, vehicle movement, and speed limit?</strong></h3>
+<section id="prediction-2-can-we-predict-the-extent-of-vehicle-damage-in-collisions-based-on-collision-type-vehicle-movement-and-speed-limit" class="level3" data-number="0.9">
+<h3 data-number="0.9" class="anchored" data-anchor-id="prediction-2-can-we-predict-the-extent-of-vehicle-damage-in-collisions-based-on-collision-type-vehicle-movement-and-speed-limit"><span class="header-section-number">0.9</span> <strong>9. Prediction #2: Can we predict the extent of vehicle damage in collisions based on collision type, vehicle movement, and speed limit?</strong></h3>
 <div style="text-align:justify">
 <div style="text-align:justify">
 <div style="text-align:justify">

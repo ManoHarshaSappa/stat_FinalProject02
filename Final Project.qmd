@@ -1,6 +1,10 @@
 ---
 title: "Final Project"
-format: html
+format:
+  html:
+    toc: true
+    number-sections: true
+    css: styles.css
 editor: visual
 output:
   html_document:
@@ -11,15 +15,10 @@ output:
 
 ***Group Number: 14***
 
-## Visualization1 : crash frequency per year
+## Visualization1 : What are the trends in the frequency of car crashes over years?
 
-![](images/WhatsApp%20Image%202024-05-01%20at%204.39.04%20PM%20(1)-02.jpeg){width="1000"}
-
-<details>
-
-<summary>Code</summary>
-
-```{r}
+```{r ,message = FALSE ,echo=FALSE}
+library(plotly)
 library(ggplot2)
 library(dplyr)
 
@@ -43,11 +42,48 @@ yearly_crash_data <- data.frame(
   Year = c("2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"),
   Num_Crashes = c(20268, 21783, 21537, 21035, 20943, 13798, 16210, 17577, 18913, 7))
 
-ggplot(yearly_crash_data, aes(x = Year, y = Num_Crashes)) +
-  geom_col(fill = "red", width = 0.5) +
-  labs(x = "Year", y = "Number of Crashes", title = "Crash Frequency per Year") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  scale_y_continuous(labels = scales::comma)
+plotly::plot_ly(yearly_crash_data, x = ~Year, y = ~Num_Crashes, type = 'bar', marker = list(color = 'rgb(139, 0, 0)')) %>%
+  plotly::layout(title = "Crash Frequency per Year",
+         xaxis = list(title = "Year"),
+         yaxis = list(title = "Number of Crashes", tickformat = ","),
+         xaxis2 = list(tickangle = 45, tickmode = 'linear'))
+```
+
+<details>
+
+<summary>Code</summary>
+
+```{r ,message = FALSE}
+library(plotly)
+library(ggplot2)
+library(dplyr)
+
+# Read data and remove missing values
+data <- read.csv('/Users/manoharshasappa/Desktop/Stat_Final_project de/CrashReportingDriversData.csv')
+data <- na.omit(data)
+
+# Convert Crash_Date to a Date format
+data$Crash_Date <- as.Date(data$Crash.Date.Time, format = "%m/%d/%Y %I:%M:%S %p")
+
+# Extract year from Crash_Date
+data$Year <- format(data$Crash_Date, "%Y")
+
+# Group the data by year and count the number of crashes
+yearly_crash_count <- data %>%
+  group_by(Year) %>%
+  summarise(Num_Crashes = n())
+
+# Provided data
+yearly_crash_data <- data.frame(
+  Year = c("2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"),
+  Num_Crashes = c(20268, 21783, 21537, 21035, 20943, 13798, 16210, 17577, 18913, 7))
+
+plot1 = plot_ly(yearly_crash_data, x = ~Year, y = ~Num_Crashes, type = 'bar', marker = list(color = 'rgb(139, 0, 0)')) %>%
+  layout(title = "Crash Frequency per Year",
+         xaxis = list(title = "Year"),
+         yaxis = list(title = "Number of Crashes", tickformat = ","),
+         xaxis2 = list(tickangle = 45, tickmode = 'linear'))
+#plot1
 ```
 
 </details>
@@ -76,7 +112,24 @@ ggplot(yearly_crash_data, aes(x = Year, y = Num_Crashes)) +
 **Explanation of the Code:** This visualizes the frequency of crashes per year using ggplot2 in R. Initially, it converts the "Crash_Date" column into a date format and extracts the year from it. Then, it groups the data by year and calculates the number of crashes that occurred each year.
 :::
 
-## visualization2 : Map showing accident frequencies
+## visualization2 : How does the distribution of car accidents vary geographically?
+
+```{r ,message = FALSE,echo=FALSE}
+library(leaflet)
+data <- read.csv('/Users/manoharshasappa/Desktop/Stat_Final_project de/CrashReportingDriversData.csv')
+data <- na.omit(data) 
+map <- leaflet(data) %>%
+  addTiles() %>%
+  addCircleMarkers(
+    lng = ~Longitude,
+    lat = ~Latitude,
+    popup = ~as.character(Report.Number),
+    label = ~as.character(Report.Number)
+  )
+
+# Print the map
+map
+```
 
 <details>
 
@@ -96,7 +149,7 @@ map <- leaflet(data) %>%
   )
 
 # Print the map
-map
+# map
 ```
 
 </details>
@@ -113,21 +166,15 @@ map
 
 -   **Report.Number:** Each incident is uniquely identified by a report number, facilitating individual incident reference and tracking.
 
+</details>
+
 ::: {style="text-align:justify"}
 **Explanation of the Code:** This utilizes the Leaflet package in R to generate an interactive map. It begins by loading Leaflet and then initializes a map object. Using latitude and longitude data from a dataframe named 'data', it places circle markers on the map to represent specific locations, like crash sites. Each marker includes a popup and label showing the associated report number. Finally, it prints the interactive map, allowing users to explore the locations and corresponding report numbers within the R environment.
 :::
 
-</details>
+## visualization3 : Top 10 cars which involve in car cashes?
 
-## visualization3 : Most car accidents
-
-![](images/v3-01.png){width="1000"}\
-
-<details>
-
-<summary>Code</summary>
-
-```{r}
+```{r ,message = FALSE, echo=FALSE}
 vehicle_counts <- data %>%
   group_by(Vehicle.Make) %>%
   summarise(count = n()) %>%
@@ -141,16 +188,39 @@ top_vehicle_counts <- vehicle_counts %>%
 
 # Your data processing code remains unchanged
 # Plotting
-ggplot(top_vehicle_counts, aes(x = reorder(Vehicle.Make, count), y = count)) +
-  geom_bar(stat = "identity", fill = "skyblue") +
-  labs(title = "Top 10 Most Common Vehicle Makes in Accidents",
-       x = "Vehicle Make",
-       y = "Number of Accidents") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 8),  # Increase font size of x-axis labels
-        axis.text.y = element_text(size = 8)) +  # Increase font size of y-axis labels
-  coord_flip() +
-  theme(plot.margin = unit(c(1, 3, 1, 1), "cm")) 
+plot_ly(top_vehicle_counts, y = ~reorder(Vehicle.Make, count), x = ~count, type = 'bar', marker = list(color = 'skyblue')) %>%
+  layout(title = "Top 10 Most Common Vehicle Makes in Accidents",
+         xaxis = list(title = "Vehicle Make", tickfont = list(size = 14)),
+         yaxis = list(title = "Number of Accidents", tickfont = list(size = 14)),
+         margin = list(l = 50, r = 50, b = 100, t = 100),  # Adjust margins
+         barmode = 'group')
+```
+
+<details>
+
+<summary>Code</summary>
+
+```{r,message = FALSE}
+vehicle_counts <- data %>%
+  group_by(Vehicle.Make) %>%
+  summarise(count = n()) %>%
+  arrange(desc(count)) # Sort by count in descending order
+
+# Take the top N most common vehicle makes for better visualization
+top_n <- 10 # You can adjust this value as needed
+
+top_vehicle_counts <- vehicle_counts %>%
+  top_n(top_n, count)
+
+# Your data processing code remains unchanged
+# Plotting
+plot2 = plot_ly(top_vehicle_counts, y = ~reorder(Vehicle.Make, count), x = ~count, type = 'bar', marker = list(color = 'skyblue')) %>%
+  layout(title = "Top 10 Most Common Vehicle Makes in Accidents",
+         xaxis = list(title = "Vehicle Make", tickfont = list(size = 14)),
+         yaxis = list(title = "Number of Accidents", tickfont = list(size = 14)),
+         margin = list(l = 50, r = 50, b = 100, t = 100),  # Adjust margins
+         barmode = 'group')
+#plot2
 ```
 
 </details>
@@ -163,9 +233,13 @@ ggplot(top_vehicle_counts, aes(x = reorder(Vehicle.Make, count), y = count)) +
 
 -   **Vehicle.Make**: This column is used to group the data by vehicle make, as we want to count the number of accidents for each vehicle make.
 
--   **count**: This column is created using **`summarise()`** to count the number of accidents for each vehicle make group. It represents the frequency of accidents for each vehicle make. ::: {style="text-align:justify"} **Explanation of the Code:** This generates a bar plot showing the top 10 most common vehicle makes involved in accidents, with vehicle make names on the y-axis and the number of accidents on the x-axis. It uses dplyr to summarize and arrange the data, then ggplot2 for visualization.Hypothesis: :::
+-   **count**: This column is created using **`summarise()`** to count the number of accidents for each vehicle make group. It represents the frequency of accidents for each vehicle make.
 
 </details>
+
+::: {style="text-align:justify"}
+**Explanation of the Code:** This generates a bar plot showing the top 10 most common vehicle makes involved in accidents, with vehicle make names on the y-axis and the number of accidents on the x-axis. It uses dplyr to summarize and arrange the data, then ggplot2 for visualization.
+:::
 
 ## hypo#1. is there any relation between weather condition, day light and injury severity
 
@@ -185,7 +259,7 @@ The code you provided performs a chi-square test of independence to determine wh
 
 <summary>Code</summary>
 
-```{r}
+```{r,message = FALSE}
 # Contingency table of Weather, Light, and Injury Severity
 contingency_table <- table(data$Weather, data$Light, data$Injury.Severity)
 
@@ -222,7 +296,7 @@ The code aims to determine whether certain types of vehicles are more likely to 
 
 <summary>Code</summary>
 
-```{r}
+```{r,message = FALSE}
 # Subset data for collisions during the day and at night
 collisions_day <- subset(data, Light == "DAYLIGHT")
 collisions_night <- subset(data, Light == "DARK LIGHTS ON")
@@ -260,7 +334,7 @@ The analysis aims to determine whether drivers distracted by electronic devices 
 
 <summary>Code</summary>
 
-```{r}
+```{r,message = FALSE}
 # Subset the data for drivers distracted by electronic devices
 electronic_distracted <- subset(data, Driver.Distracted.By == "ELECTRONIC DEVICE")
 
@@ -296,7 +370,7 @@ print(chi_square_test)
 
 <summary>Code</summary>
 
-```{r}
+```{r,message = FALSE}
 # Subset the dataset to include only the required columns
 traffic_data <- data[, c("Traffic.Control", "Injury.Severity")]
 # Remove rows with any missing values
@@ -348,12 +422,15 @@ ggplot(collision_counts, aes(x = reorder(Traffic.Control, -Collision_Count), y =
 
 #### Fit random forest model
 
-![](images/Screenshot%202024-05-03%20at%208.47.56%20PM.png)
+![](images/1%20model.png)
+
+\####
 
 <details>
+
 <summary>Random Forest Model Code</summary>
 
-```{r}
+```{r,message = FALSE}
 select_cols=c('Weather','Surface.Condition','Collision.Type','Injury.Severity')
 injury_data = data[select_cols]
 
@@ -361,32 +438,32 @@ injury_data = injury_data[complete.cases(injury_data), ]
 
 ```
 
-```{r}
+```{r,message = FALSE}
 injury_data[injury_data == 'N/A'] = NA
 
 injury_data = na.omit(injury_data)
 
-# print(sum(is.na(injury_data)))
+## print(sum(is.na(injury_data)))
 
 ```
 
-```{r}
+```{r,message = FALSE}
 injury_data[injury_data == ''] = NA
 
 injury_data = na.omit(injury_data)
 
-# print(sum(is.na(injury_data)))
+## print(sum(is.na(injury_data)))
 
 ```
 
-```{r}
+```{r,message = FALSE}
 injury_data$Weather <- factor(injury_data$Weather)
 injury_data$Surface.Condition <- factor(injury_data$Surface.Condition)
 injury_data$Collision.Type <- factor(injury_data$Collision.Type)
 injury_data$Injury.Severity <- factor(injury_data$Injury.Severity)
 ```
 
-```{r}
+```{r,message = FALSE}
 # Load required library
 library(randomForest)
 library(caret)
@@ -401,10 +478,10 @@ test_data <- injury_data[-train_indices, ]
 # train_data
 # Fit random forest model
 rmodel <- randomForest(Injury.Severity ~ ., data = train_data, ntree = 500)
-# print(rmodel)
+print(rmodel)
 ```
 
-```{r}
+```{r,message = FALSE}
 predictions <- predict(rmodel, newdata = test_data)
 
 # Create confusion matrix
@@ -432,11 +509,11 @@ f1_score <- 2 * precision * recall / (precision + recall)
 # print(f1_score)
 
 # Print confusion matrix
-#print("Confusion Matrix:")
-#print(conf_matrix)
+# print("Confusion Matrix:")
+# print(conf_matrix)
 ```
 
-```{r}
+```{r ,message = FALSE}
 # Evaluate the model using confusion matrix
 conf_matrix <- table(test_data$Injury.Severity, predictions)
 
@@ -447,11 +524,11 @@ accuracy <- sum(diag(conf_matrix)) / sum(conf_matrix)
 # print(paste("Accuracy:", accuracy))
 ```
 
-```{r}
+```{r ,message = FALSE}
 importance(rmodel)
 ```
 
-```{r}
+```{r ,message = FALSE}
 varImpPlot(rmodel)
 ```
 
@@ -459,31 +536,31 @@ varImpPlot(rmodel)
 
 ### Accuracy
 
-![](images/Screenshot%202024-05-03%20at%208.49.37%20PM.png)
+![](images/2.png)
 
 ### Precision
 
-![](images/Screenshot%202024-05-03%20at%208.50.32%20PM.png)
+![](images/3%20.png)
 
 ### Recall
 
-![](images/Screenshot%202024-05-03%20at%208.51.35%20PM.png)
+![](images/9.png)
 
 ### f1_score
 
-![](images/Screenshot%202024-05-03%20at%208.52.19%20PM.png)
+![](images/4.png)
 
-#### Confusion Matrix
+### Confusion Matrix
 
-![](images/Screenshot%202024-05-03%20at%208.48.45%20PM.png)
+![](images/5.png)
 
 ### Importance model
 
-![](images/Screenshot 2024-05-03 at 8.56.06 PM.png)
+![](images/6.png)
 
-Graph:
+### Graph:
 
-![](images/Screenshot 2024-05-03 at 8.57.31 PM.png)
+![](images/7.png)
 
 ::: {style="text-align:justify"}
 **Interpretation of Results**: The question aims to predict the severity of injuries resulting from collisions based on various factors such as weather conditions, road surface conditions, and collision types. The output is from a random forest classification model trained on a dataset (train_data). The model's accuracy is approximately 80.69%, indicating its ability to predict injury severity.
@@ -499,13 +576,19 @@ Overall, the output suggests that weather conditions, road surface conditions, a
 
 ### Accuracy :
 
-![](images/WhatsApp%20Image%202024-05-03%20at%2011.24.47%20AM.jpeg){fig-align="center"} \### Precision : ![](images/WhatsApp%20Image%202024-05-03%20at%2011.58.44%20AM.jpeg) \### Recall : ![](images/WhatsApp%20Image%202024-05-03%20at%2011.58.44%20AM%20(1).jpeg) \### F1_score : ![](images/WhatsApp%20Image%202024-05-03%20at%2011.58.43%20AM.jpeg)
+![](images/WhatsApp%20Image%202024-05-03%20at%2011.24.47%20AM.jpeg){fig-align="center"} \###
+
+### Precision : ![](images/WhatsApp%20Image%202024-05-03%20at%2011.58.44%20AM.jpeg)
+
+### Recall : ![](images/WhatsApp%20Image%202024-05-03%20at%2011.58.44%20AM%20(1).jpeg)
+
+### F1_score : ![](images/WhatsApp%20Image%202024-05-03%20at%2011.58.43%20AM.jpeg)
 
 <details>
 
 <summary>Code</summary>
 
-```{r}
+```{r,message = FALSE}
 library(randomForest)
 library(caret)
 
@@ -577,7 +660,7 @@ print(conf_matrix)
 
 <summary>Code</summary>
 
-```{r}
+```{r,message = FALSE}
 library('rpart.plot')
 prp(d_model, type = 2, extra = 1, branch = 0.6)
 ```

@@ -1,7 +1,14 @@
 ---
 title: "Home"
-format: html
+format:
+  html:
+    toc: true
+    number-sections: true
+    css: styles.css
 editor: visual
+output:
+  html_document:
+    code_folding: "hide"
 ---
 
 # **Welcome to Our Final Project Homepage!** 
