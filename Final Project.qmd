@@ -130,135 +130,6 @@ plot1 = plot_ly(yearly_crash_data, x = ~Year, y = ~Num_Crashes, type = 'bar', ma
 **Explanation of the Code:** This visualizes the frequency of crashes per year using ggplot2 in R. Initially, it converts the "Crash_Date" column into a date format and extracts the year from it. Then, it groups the data by year and calculates the number of crashes that occurred each year.
 :::
 
-## visualization2 : How does the distribution of car accidents vary geographically?
-
-```{r ,message = FALSE,echo=FALSE}
-library(leaflet)
-data <- read.csv('/Users/manoharshasappa/Desktop/Stat_Final_project de/CrashReportingDriversData.csv')
-data <- na.omit(data) 
-map <- leaflet(data) %>%
-  addTiles() %>%
-  addCircleMarkers(
-    lng = ~Longitude,
-    lat = ~Latitude,
-    popup = ~as.character(Report.Number),
-    label = ~as.character(Report.Number)
-  )
-
-# Print the map
-map
-```
-
-<details>
-
-<summary>Code</summary>
-
-```{r}
-library(leaflet)
-data <- read.csv('/Users/manoharshasappa/Desktop/Stat_Final_project de/CrashReportingDriversData.csv')
-data <- na.omit(data) 
-map <- leaflet(data) %>%
-  addTiles() %>%
-  addCircleMarkers(
-    lng = ~Longitude,
-    lat = ~Latitude,
-    popup = ~as.character(Report.Number),
-    label = ~as.character(Report.Number)
-  )
-
-# Print the map
-# map
-```
-
-</details>
-
-<details>
-
-<summary>Columns Used</summary>
-
-**Columns Used:**
-
--   **Longitude:** Longitude coordinates are essential for accurately positioning each incident on the map.
-
--   **Latitude:** Latitude coordinates complement longitude for precise incident mapping.
-
--   **Report.Number:** Each incident is uniquely identified by a report number, facilitating individual incident reference and tracking.
-
-</details>
-
-::: {style="text-align:justify"}
-**Explanation of the Code:** This utilizes the Leaflet package in R to generate an interactive map. It begins by loading Leaflet and then initializes a map object. Using latitude and longitude data from a dataframe named 'data', it places circle markers on the map to represent specific locations, like crash sites. Each marker includes a popup and label showing the associated report number. Finally, it prints the interactive map, allowing users to explore the locations and corresponding report numbers within the R environment.
-:::
-
-## visualization3 : Top 10 cars which involve in car cashes?
-
-```{r ,message = FALSE, echo=FALSE}
-vehicle_counts <- data %>%
-  group_by(Vehicle.Make) %>%
-  summarise(count = n()) %>%
-  arrange(desc(count)) # Sort by count in descending order
-
-# Take the top N most common vehicle makes for better visualization
-top_n <- 10 # You can adjust this value as needed
-
-top_vehicle_counts <- vehicle_counts %>%
-  top_n(top_n, count)
-
-# Your data processing code remains unchanged
-# Plotting
-plot_ly(top_vehicle_counts, y = ~reorder(Vehicle.Make, count), x = ~count, type = 'bar', marker = list(color = 'skyblue')) %>%
-  layout(title = "Top 10 Most Common Vehicle Makes in Accidents",
-         xaxis = list(title = "Vehicle Make", tickfont = list(size = 14)),
-         yaxis = list(title = "Number of Accidents", tickfont = list(size = 14)),
-         margin = list(l = 50, r = 50, b = 100, t = 100),  # Adjust margins
-         barmode = 'group')
-```
-
-<details>
-
-<summary>Code</summary>
-
-```{r,message = FALSE}
-vehicle_counts <- data %>%
-  group_by(Vehicle.Make) %>%
-  summarise(count = n()) %>%
-  arrange(desc(count)) # Sort by count in descending order
-
-# Take the top N most common vehicle makes for better visualization
-top_n <- 10 # You can adjust this value as needed
-
-top_vehicle_counts <- vehicle_counts %>%
-  top_n(top_n, count)
-
-# Your data processing code remains unchanged
-# Plotting
-plot2 = plot_ly(top_vehicle_counts, y = ~reorder(Vehicle.Make, count), x = ~count, type = 'bar', marker = list(color = 'skyblue')) %>%
-  layout(title = "Top 10 Most Common Vehicle Makes in Accidents",
-         xaxis = list(title = "Vehicle Make", tickfont = list(size = 14)),
-         yaxis = list(title = "Number of Accidents", tickfont = list(size = 14)),
-         margin = list(l = 50, r = 50, b = 100, t = 100),  # Adjust margins
-         barmode = 'group')
-#plot2
-```
-
-</details>
-
-<details>
-
-<summary>Columns Used</summary>
-
-**Columns Used:**
-
--   **Vehicle.Make**: This column is used to group the data by vehicle make, as we want to count the number of accidents for each vehicle make.
-
--   **count**: This column is created using **`summarise()`** to count the number of accidents for each vehicle make group. It represents the frequency of accidents for each vehicle make.
-
-</details>
-
-::: {style="text-align:justify"}
-**Explanation of the Code:** This generates a bar plot showing the top 10 most common vehicle makes involved in accidents, with vehicle make names on the y-axis and the number of accidents on the x-axis. It uses dplyr to summarize and arrange the data, then ggplot2 for visualization.
-:::
-
 ## hypo#1. is there any relation between weather condition, day light and injury severity
 
 The code you provided performs a chi-square test of independence to determine whether there is a statistically significant association between weather condition, light condition, and injury severity in traffic accidents. Here's an explanation of why this test was conducted and what was observed:
@@ -298,143 +169,6 @@ print(chi_square_test)
 **Interpretation of Results**: The question is asking if there's any relationship between weather conditions, daylight, and injury severity in accidents. To analyze this, a Pearson's Chi-squared test was conducted on the contingency table. The output indicates a significant relationship between these variables, with a very low p-value (p \< 2.2e-16). This suggests that the observed frequencies of injury severity across different weather conditions and daylight statuses are unlikely to have occurred by chance alone, indicating a strong association between these factors.
 :::
 
-## hypo#2. Are certain types of vehicles more likely to be involved in collisions at night compared to during the day?
-
-The code aims to determine whether certain types of vehicles are more likely to be involved in collisions at night compared to during the day. Here's a clear interpretation of the analysis:
-
-1.  **Subset Data**: The dataset is divided into two subsets: collisions occurring during the day (**`collisions_day`**) and collisions occurring at night with lights on (**`collisions_night`**).
-
-2.  **Count Vehicle Types**: Counts of each vehicle type involved in collisions are calculated separately for day and night collisions.
-
-**Chi-Square Test**: A chi-square test of independence is performed to assess whether there is a significant association between vehicle types and the time of the collision (day or night).
-
-![](images/h2.png){width="1000"}
-
-<details>
-
-<summary>Code</summary>
-
-```{r,message = FALSE}
-# Subset data for collisions during the day and at night
-collisions_day <- subset(data, Light == "DAYLIGHT")
-collisions_night <- subset(data, Light == "DARK LIGHTS ON")
-
-# Get the counts of each vehicle type for day and night collisions
-counts_day <- table(collisions_day$Vehicle.Body.Type)
-counts_night <- table(collisions_night$Vehicle.Body.Type)
-
-# Perform chi-square test of independence
-chi_square_test <- chisq.test(counts_day, counts_night)
-
-# Print the test results
-print(chi_square_test)
-```
-
-</details>
-
-::: {style="text-align:justify"}
-**Interpretation of Results**: The question is investigating whether certain types of vehicles are more prone to being involved in collisions at night compared to during the day. To analyze this, a Pearson's Chi-squared test was conducted comparing the counts of collisions involving different types of vehicles during the day and at night. The output indicates that there is no significant difference in the distribution of collisions across different types of vehicles between day and night, with a p-value of 0.2408. This suggests that the likelihood of different types of vehicles being involved in collisions is similar during both day and night.
-:::
-
-## hypo#3. Do drivers distracted by electronic devices have a higher rate of collisions compared to drivers distracted by other factors?
-
-The analysis aims to determine whether drivers distracted by electronic devices have a higher rate of collisions compared to drivers distracted by other factors. Here's a clear interpretation of the results:
-
-1.  **Data Subset**: The dataset is divided into two subsets: one for drivers distracted by electronic devices (**`electronic_distracted`**) and another for drivers distracted by other factors (**`other_distracted`**).
-
-2.  **Count Collisions**: The number of collisions is counted separately for drivers distracted by electronic devices and those distracted by other factors.
-
-3.  **Chi-Square Test**: A chi-square test of independence is performed to assess whether there is a significant difference in collision rates between the two groups of drivers.
-
-![](images/h3.png){width="1000"}
-
-<details>
-
-<summary>Code</summary>
-
-```{r,message = FALSE}
-# Subset the data for drivers distracted by electronic devices
-electronic_distracted <- subset(data, Driver.Distracted.By == "ELECTRONIC DEVICE")
-
-# Subset the data for drivers distracted by other factors
-other_distracted <- subset(data, Driver.Distracted.By != "ELECTRONIC DEVICE" & Driver.Distracted.By != "NOT DISTRACTED")
-
-# Count the number of collisions for each distraction type
-counts_electronic <- nrow(electronic_distracted)
-counts_other <- nrow(other_distracted)
-
-# Perform chi-square test
-chi_square_test <- chisq.test(c(counts_electronic, counts_other))
-
-# Print the test results
-print(chi_square_test)
-```
-
-</details>
-
-::: {style="text-align:justify"}
-**Interpretation of Results**: The question aims to determine if drivers distracted by electronic devices have a higher collision rate compared to those distracted by other factors. To analyze this, a Chi-squared test was conducted comparing the collision counts between drivers distracted by electronic devices and those distracted by other factors. The output indicates a significant difference between the two groups, with a very low p-value (p \< 2.2e-16). This suggests that drivers distracted by electronic devices indeed have a significantly higher collision rate compared to those distracted by other factors.
-:::
-
-## hypo#4: Can we determine the effectiveness of different traffic control measures (Traffic.Control) in reducing collision rates? Which types of traffic controls are most effective in preventing collisions?
-
-![](images/h4.png){width="1000"}
-
-### Graph :
-
-![](images/hy4.png){width="1000"}
-
-<details>
-
-<summary>Code</summary>
-
-```{r,message = FALSE}
-# Subset the dataset to include only the required columns
-traffic_data <- data[, c("Traffic.Control", "Injury.Severity")]
-# Remove rows with any missing values
-traffic_data <- na.omit(traffic_data)
-
-library(ggplot2)
-library(dplyr)
-
-traffic_data[traffic_data == "N/A"] <- NA
-
-# Remove rows with any missing values
-traffic_data <- na.omit(traffic_data)
-
-# Check if there are any missing values left
-print(sum(is.na(traffic_data)))
-collision_counts <- traffic_data %>%
-  group_by(Traffic.Control) %>%
-  summarise(Collision_Count = n())
-
-# Calculate collision rates for each traffic control type
-total_collisions <- nrow(traffic_data)
-collision_rates <- collision_counts %>%
-  mutate(Collision_Rate = Collision_Count / total_collisions)
-
-# Statistical Analysis
-# Perform chi-square test to compare collision rates between different traffic controls
-chi_square_test <- chisq.test(traffic_data$Traffic.Control, traffic_data$Injury.Severity)
-
-# Visualization
-par(mfrow=c(1, 2))  # Set up a 1x2 plotting grid
-
-# Create a bar plot using ggplot2
-ggplot(collision_counts, aes(x = reorder(Traffic.Control, -Collision_Count), y = Collision_Count)) +
-  geom_bar(stat = "identity", fill = "skyblue") +
-  labs(title = "Collision Counts by Traffic Control Type",
-       x = "Traffic Control Type",
-       y = "Collision Count") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
-```
-
-</details>
-
-::: {style="text-align:justify"}
-**Interpretation of Results**: The question investigates whether different types of traffic control measures are effective in reducing collision rates and which ones are most effective. To analyze this, a Pearson's Chi-squared test was conducted between the types of traffic control measures and the severity of injuries resulting from collisions. The output shows a significant relationship between the two variables, with a very low p-value (p \< 2.2e-16). This suggests that the effectiveness of traffic control measures in preventing collisions varies significantly across different types. However, further analysis would be needed to determine which specific types of traffic controls are most effective in reducing collision rates and severity of injuries.
-:::
 
 ## Per#1: Can we predict the severity of injuries based on various factors such as weather conditions, road surface conditions, and collision type?
 
@@ -590,6 +324,214 @@ The confusion matrix reveals the number of correct and incorrect predictions for
 Overall, the output suggests that weather conditions, road surface conditions, and collision types are significant factors in predicting the severity of injuries resulting from collisions, with "Collision.Type" being the most important predictor.
 :::
 
+## visualization3 : Top 10 cars which involve in car cashes?
+
+```{r ,message = FALSE, echo=FALSE}
+vehicle_counts <- data %>%
+  group_by(Vehicle.Make) %>%
+  summarise(count = n()) %>%
+  arrange(desc(count)) # Sort by count in descending order
+
+# Take the top N most common vehicle makes for better visualization
+top_n <- 10 # You can adjust this value as needed
+
+top_vehicle_counts <- vehicle_counts %>%
+  top_n(top_n, count)
+
+# Your data processing code remains unchanged
+# Plotting
+plot_ly(top_vehicle_counts, y = ~reorder(Vehicle.Make, count), x = ~count, type = 'bar', marker = list(color = 'skyblue')) %>%
+  layout(title = "Top 10 Most Common Vehicle Makes in Accidents",
+         xaxis = list(title = "Vehicle Make", tickfont = list(size = 14)),
+         yaxis = list(title = "Number of Accidents", tickfont = list(size = 14)),
+         margin = list(l = 50, r = 50, b = 100, t = 100),  # Adjust margins
+         barmode = 'group')
+```
+
+<details>
+
+<summary>Code</summary>
+
+```{r,message = FALSE}
+vehicle_counts <- data %>%
+  group_by(Vehicle.Make) %>%
+  summarise(count = n()) %>%
+  arrange(desc(count)) # Sort by count in descending order
+
+# Take the top N most common vehicle makes for better visualization
+top_n <- 10 # You can adjust this value as needed
+
+top_vehicle_counts <- vehicle_counts %>%
+  top_n(top_n, count)
+
+# Your data processing code remains unchanged
+# Plotting
+plot2 = plot_ly(top_vehicle_counts, y = ~reorder(Vehicle.Make, count), x = ~count, type = 'bar', marker = list(color = 'skyblue')) %>%
+  layout(title = "Top 10 Most Common Vehicle Makes in Accidents",
+         xaxis = list(title = "Vehicle Make", tickfont = list(size = 14)),
+         yaxis = list(title = "Number of Accidents", tickfont = list(size = 14)),
+         margin = list(l = 50, r = 50, b = 100, t = 100),  # Adjust margins
+         barmode = 'group')
+#plot2
+```
+
+</details>
+
+<details>
+
+<summary>Columns Used</summary>
+
+**Columns Used:**
+
+-   **Vehicle.Make**: This column is used to group the data by vehicle make, as we want to count the number of accidents for each vehicle make.
+
+-   **count**: This column is created using **`summarise()`** to count the number of accidents for each vehicle make group. It represents the frequency of accidents for each vehicle make.
+
+</details>
+
+::: {style="text-align:justify"}
+**Explanation of the Code:** This generates a bar plot showing the top 10 most common vehicle makes involved in accidents, with vehicle make names on the y-axis and the number of accidents on the x-axis. It uses dplyr to summarize and arrange the data, then ggplot2 for visualization.
+:::
+
+
+## hypo#2. Are certain types of vehicles more likely to be involved in collisions at night compared to during the day?
+
+The code aims to determine whether certain types of vehicles are more likely to be involved in collisions at night compared to during the day. Here's a clear interpretation of the analysis:
+
+1.  **Subset Data**: The dataset is divided into two subsets: collisions occurring during the day (**`collisions_day`**) and collisions occurring at night with lights on (**`collisions_night`**).
+
+2.  **Count Vehicle Types**: Counts of each vehicle type involved in collisions are calculated separately for day and night collisions.
+
+**Chi-Square Test**: A chi-square test of independence is performed to assess whether there is a significant association between vehicle types and the time of the collision (day or night).
+
+![](images/h2.png){width="1000"}
+
+<details>
+
+<summary>Code</summary>
+
+```{r,message = FALSE}
+# Subset data for collisions during the day and at night
+collisions_day <- subset(data, Light == "DAYLIGHT")
+collisions_night <- subset(data, Light == "DARK LIGHTS ON")
+
+# Get the counts of each vehicle type for day and night collisions
+counts_day <- table(collisions_day$Vehicle.Body.Type)
+counts_night <- table(collisions_night$Vehicle.Body.Type)
+
+# Perform chi-square test of independence
+chi_square_test <- chisq.test(counts_day, counts_night)
+
+# Print the test results
+print(chi_square_test)
+```
+
+</details>
+
+::: {style="text-align:justify"}
+**Interpretation of Results**: The question is investigating whether certain types of vehicles are more prone to being involved in collisions at night compared to during the day. To analyze this, a Pearson's Chi-squared test was conducted comparing the counts of collisions involving different types of vehicles during the day and at night. The output indicates that there is no significant difference in the distribution of collisions across different types of vehicles between day and night, with a p-value of 0.2408. This suggests that the likelihood of different types of vehicles being involved in collisions is similar during both day and night.
+:::
+
+## hypo#3. Do drivers distracted by electronic devices have a higher rate of collisions compared to drivers distracted by other factors?
+
+The analysis aims to determine whether drivers distracted by electronic devices have a higher rate of collisions compared to drivers distracted by other factors. Here's a clear interpretation of the results:
+
+1.  **Data Subset**: The dataset is divided into two subsets: one for drivers distracted by electronic devices (**`electronic_distracted`**) and another for drivers distracted by other factors (**`other_distracted`**).
+
+2.  **Count Collisions**: The number of collisions is counted separately for drivers distracted by electronic devices and those distracted by other factors.
+
+3.  **Chi-Square Test**: A chi-square test of independence is performed to assess whether there is a significant difference in collision rates between the two groups of drivers.
+
+![](images/h3.png){width="1000"}
+
+<details>
+
+<summary>Code</summary>
+
+```{r,message = FALSE}
+# Subset the data for drivers distracted by electronic devices
+electronic_distracted <- subset(data, Driver.Distracted.By == "ELECTRONIC DEVICE")
+
+# Subset the data for drivers distracted by other factors
+other_distracted <- subset(data, Driver.Distracted.By != "ELECTRONIC DEVICE" & Driver.Distracted.By != "NOT DISTRACTED")
+
+# Count the number of collisions for each distraction type
+counts_electronic <- nrow(electronic_distracted)
+counts_other <- nrow(other_distracted)
+
+# Perform chi-square test
+chi_square_test <- chisq.test(c(counts_electronic, counts_other))
+
+# Print the test results
+print(chi_square_test)
+```
+
+</details>
+
+::: {style="text-align:justify"}
+**Interpretation of Results**: The question aims to determine if drivers distracted by electronic devices have a higher collision rate compared to those distracted by other factors. To analyze this, a Chi-squared test was conducted comparing the collision counts between drivers distracted by electronic devices and those distracted by other factors. The output indicates a significant difference between the two groups, with a very low p-value (p \< 2.2e-16). This suggests that drivers distracted by electronic devices indeed have a significantly higher collision rate compared to those distracted by other factors.
+:::
+
+## visualization2 : How does the distribution of car accidents vary geographically?
+
+```{r ,message = FALSE,echo=FALSE}
+library(leaflet)
+data <- read.csv('/Users/manoharshasappa/Desktop/Stat_Final_project de/CrashReportingDriversData.csv')
+data <- na.omit(data) 
+map <- leaflet(data) %>%
+  addTiles() %>%
+  addCircleMarkers(
+    lng = ~Longitude,
+    lat = ~Latitude,
+    popup = ~as.character(Report.Number),
+    label = ~as.character(Report.Number)
+  )
+
+# Print the map
+map
+```
+
+<details>
+
+<summary>Code</summary>
+
+```{r}
+library(leaflet)
+data <- read.csv('/Users/manoharshasappa/Desktop/Stat_Final_project de/CrashReportingDriversData.csv')
+data <- na.omit(data) 
+map <- leaflet(data) %>%
+  addTiles() %>%
+  addCircleMarkers(
+    lng = ~Longitude,
+    lat = ~Latitude,
+    popup = ~as.character(Report.Number),
+    label = ~as.character(Report.Number)
+  )
+
+# Print the map
+# map
+```
+
+</details>
+
+<details>
+
+<summary>Columns Used</summary>
+
+**Columns Used:**
+
+-   **Longitude:** Longitude coordinates are essential for accurately positioning each incident on the map.
+
+-   **Latitude:** Latitude coordinates complement longitude for precise incident mapping.
+
+-   **Report.Number:** Each incident is uniquely identified by a report number, facilitating individual incident reference and tracking.
+
+</details>
+
+::: {style="text-align:justify"}
+**Explanation of the Code:** This utilizes the Leaflet package in R to generate an interactive map. It begins by loading Leaflet and then initializes a map object. Using latitude and longitude data from a dataframe named 'data', it places circle markers on the map to represent specific locations, like crash sites. Each marker includes a popup and label showing the associated report number. Finally, it prints the interactive map, allowing users to explore the locations and corresponding report numbers within the R environment.
+:::
+
 ## per#2: Can we predict the extent of vehicle damage in collisions based on collision type, vehicle movement, and speed limit?
 
 ### Accuracy :
@@ -687,4 +629,64 @@ prp(d_model, type = 2, extra = 1, branch = 0.6)
 
 ::: {style="text-align:justify"}
 **Interpretation of Results**: The output shows the performance of a model that predicts the extent of vehicle damage in collisions. It's about 45% accurate overall. The model is better at predicting certain types of damage, like "DISABLING," but not so good at others, like "DESTROYED" or "NO DAMAGE." The confusion matrix gives details on predictions versus actual outcomes. The most crucial factors for prediction are collision type, vehicle movement, and speed limit. Collision type is the most important, followed by vehicle movement and speed limit.
+:::
+
+## hypo#4: Can we determine the effectiveness of different traffic control measures (Traffic.Control) in reducing collision rates? Which types of traffic controls are most effective in preventing collisions?
+
+![](images/h4.png){width="1000"}
+
+### Graph :
+
+![](images/hy4.png){width="1000"}
+
+<details>
+
+<summary>Code</summary>
+
+```{r,message = FALSE}
+# Subset the dataset to include only the required columns
+traffic_data <- data[, c("Traffic.Control", "Injury.Severity")]
+# Remove rows with any missing values
+traffic_data <- na.omit(traffic_data)
+
+library(ggplot2)
+library(dplyr)
+
+traffic_data[traffic_data == "N/A"] <- NA
+
+# Remove rows with any missing values
+traffic_data <- na.omit(traffic_data)
+
+# Check if there are any missing values left
+print(sum(is.na(traffic_data)))
+collision_counts <- traffic_data %>%
+  group_by(Traffic.Control) %>%
+  summarise(Collision_Count = n())
+
+# Calculate collision rates for each traffic control type
+total_collisions <- nrow(traffic_data)
+collision_rates <- collision_counts %>%
+  mutate(Collision_Rate = Collision_Count / total_collisions)
+
+# Statistical Analysis
+# Perform chi-square test to compare collision rates between different traffic controls
+chi_square_test <- chisq.test(traffic_data$Traffic.Control, traffic_data$Injury.Severity)
+
+# Visualization
+par(mfrow=c(1, 2))  # Set up a 1x2 plotting grid
+
+# Create a bar plot using ggplot2
+ggplot(collision_counts, aes(x = reorder(Traffic.Control, -Collision_Count), y = Collision_Count)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  labs(title = "Collision Counts by Traffic Control Type",
+       x = "Traffic Control Type",
+       y = "Collision Count") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+</details>
+
+::: {style="text-align:justify"}
+**Interpretation of Results**: The question investigates whether different types of traffic control measures are effective in reducing collision rates and which ones are most effective. To analyze this, a Pearson's Chi-squared test was conducted between the types of traffic control measures and the severity of injuries resulting from collisions. The output shows a significant relationship between the two variables, with a very low p-value (p \< 2.2e-16). This suggests that the effectiveness of traffic control measures in preventing collisions varies significantly across different types. However, further analysis would be needed to determine which specific types of traffic controls are most effective in reducing collision rates and severity of injuries.
 :::
