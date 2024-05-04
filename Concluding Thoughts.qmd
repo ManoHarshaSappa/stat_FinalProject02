@@ -14,5 +14,5 @@ In conclusion, the Research Design encompasses a comprehensive methodology to in
 :::
 ::: {style="text-align:justify"}
 ### References: 
-Montgomery County of Maryland - Crash reporting - Drivers data. (2024, February 9). url: https://catalog.data.gov/dataset/crash-reporting-drivers-data
+Montgomery County of Maryland - Crash reporting - Drivers data. (2024, February 9). url: https://catalog.data.gov/dataset/crash-reporting-drivers-data.
 :::

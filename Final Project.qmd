@@ -14,8 +14,11 @@ output:
 ## Visualization1 : crash frequency per year
 
 ![](images/WhatsApp%20Image%202024-05-01%20at%204.39.04%20PM%20(1)-02.jpeg){width="1000"}
+
 <details>
+
 <summary>Code</summary>
+
 ```{r}
 library(ggplot2)
 library(dplyr)
@@ -46,7 +49,12 @@ ggplot(yearly_crash_data, aes(x = Year, y = Num_Crashes)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_y_continuous(labels = scales::comma)
 ```
+
 </details>
+
+<details>
+
+<summary>Columns Used</summary>
 
 **Columns Used:**
 
@@ -62,13 +70,18 @@ ggplot(yearly_crash_data, aes(x = Year, y = Num_Crashes)) +
 
     -   **Rationale for Use**: Quantifying the crash frequency provides a clear measure for understanding the magnitude of road accidents over time.
 
+</details>
+
 ::: {style="text-align:justify"}
 **Explanation of the Code:** This visualizes the frequency of crashes per year using ggplot2 in R. Initially, it converts the "Crash_Date" column into a date format and extracts the year from it. Then, it groups the data by year and calculates the number of crashes that occurred each year.
 :::
 
 ## visualization2 : Map showing accident frequencies
+
 <details>
+
 <summary>Code</summary>
+
 ```{r}
 library(leaflet)
 data <- read.csv('/Users/manoharshasappa/Desktop/Stat_Final_project de/CrashReportingDriversData.csv')
@@ -85,7 +98,13 @@ map <- leaflet(data) %>%
 # Print the map
 map
 ```
+
 </details>
+
+<details>
+
+<summary>Columns Used</summary>
+
 **Columns Used:**
 
 -   **Longitude:** Longitude coordinates are essential for accurately positioning each incident on the map.
@@ -98,11 +117,16 @@ map
 **Explanation of the Code:** This utilizes the Leaflet package in R to generate an interactive map. It begins by loading Leaflet and then initializes a map object. Using latitude and longitude data from a dataframe named 'data', it places circle markers on the map to represent specific locations, like crash sites. Each marker includes a popup and label showing the associated report number. Finally, it prints the interactive map, allowing users to explore the locations and corresponding report numbers within the R environment.
 :::
 
+</details>
+
 ## visualization3 : Most car accidents
 
 ![](images/v3-01.png){width="1000"}\
+
 <details>
+
 <summary>Code</summary>
+
 ```{r}
 vehicle_counts <- data %>%
   group_by(Vehicle.Make) %>%
@@ -128,13 +152,20 @@ ggplot(top_vehicle_counts, aes(x = reorder(Vehicle.Make, count), y = count)) +
   coord_flip() +
   theme(plot.margin = unit(c(1, 3, 1, 1), "cm")) 
 ```
+
 </details>
+
+<details>
+
+<summary>Columns Used</summary>
 
 **Columns Used:**
 
 -   **Vehicle.Make**: This column is used to group the data by vehicle make, as we want to count the number of accidents for each vehicle make.
 
 -   **count**: This column is created using **`summarise()`** to count the number of accidents for each vehicle make group. It represents the frequency of accidents for each vehicle make. ::: {style="text-align:justify"} **Explanation of the Code:** This generates a bar plot showing the top 10 most common vehicle makes involved in accidents, with vehicle make names on the y-axis and the number of accidents on the x-axis. It uses dplyr to summarize and arrange the data, then ggplot2 for visualization.Hypothesis: :::
+
+</details>
 
 ## hypo#1. is there any relation between weather condition, day light and injury severity
 
@@ -149,8 +180,11 @@ The code you provided performs a chi-square test of independence to determine wh
 -   The chi-square test is then applied to assess whether these variables are independent of each other or if there is a relationship between them.
 
 ![](images/h1.png){width="1000"}
+
 <details>
+
 <summary>Code</summary>
+
 ```{r}
 # Contingency table of Weather, Light, and Injury Severity
 contingency_table <- table(data$Weather, data$Light, data$Injury.Severity)
@@ -165,6 +199,7 @@ chi_square_test <- chisq.test(contingency_table)
 # Print the test results
 print(chi_square_test)
 ```
+
 </details>
 
 ::: {style="text-align:justify"}
@@ -182,8 +217,11 @@ The code aims to determine whether certain types of vehicles are more likely to 
 **Chi-Square Test**: A chi-square test of independence is performed to assess whether there is a significant association between vehicle types and the time of the collision (day or night).
 
 ![](images/h2.png){width="1000"}
+
 <details>
+
 <summary>Code</summary>
+
 ```{r}
 # Subset data for collisions during the day and at night
 collisions_day <- subset(data, Light == "DAYLIGHT")
@@ -199,6 +237,7 @@ chi_square_test <- chisq.test(counts_day, counts_night)
 # Print the test results
 print(chi_square_test)
 ```
+
 </details>
 
 ::: {style="text-align:justify"}
@@ -216,8 +255,11 @@ The analysis aims to determine whether drivers distracted by electronic devices 
 3.  **Chi-Square Test**: A chi-square test of independence is performed to assess whether there is a significant difference in collision rates between the two groups of drivers.
 
 ![](images/h3.png){width="1000"}
+
 <details>
+
 <summary>Code</summary>
+
 ```{r}
 # Subset the data for drivers distracted by electronic devices
 electronic_distracted <- subset(data, Driver.Distracted.By == "ELECTRONIC DEVICE")
@@ -235,6 +277,7 @@ chi_square_test <- chisq.test(c(counts_electronic, counts_other))
 # Print the test results
 print(chi_square_test)
 ```
+
 </details>
 
 ::: {style="text-align:justify"}
@@ -246,10 +289,13 @@ print(chi_square_test)
 ![](images/h4.png){width="1000"}
 
 ### Graph :
+
 ![](images/hy4.png){width="1000"}
 
 <details>
+
 <summary>Code</summary>
+
 ```{r}
 # Subset the dataset to include only the required columns
 traffic_data <- data[, c("Traffic.Control", "Injury.Severity")]
@@ -291,6 +337,7 @@ ggplot(collision_counts, aes(x = reorder(Traffic.Control, -Collision_Count), y =
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
+
 </details>
 
 ::: {style="text-align:justify"}
@@ -299,14 +346,144 @@ ggplot(collision_counts, aes(x = reorder(Traffic.Control, -Collision_Count), y =
 
 ## Per#1: Can we predict the severity of injuries based on various factors such as weather conditions, road surface conditions, and collision type?
 
-### graph ; 
+#### Fit random forest model
+
+![](images/Screenshot%202024-05-03%20at%208.47.56%20PM.png)
 
 <details>
-<summary>Code</summary>
+<summary>Random Forest Model Code</summary>
+
 ```{r}
-### sadfdf
+select_cols=c('Weather','Surface.Condition','Collision.Type','Injury.Severity')
+injury_data = data[select_cols]
+
+injury_data = injury_data[complete.cases(injury_data), ]
+
 ```
+
+```{r}
+injury_data[injury_data == 'N/A'] = NA
+
+injury_data = na.omit(injury_data)
+
+# print(sum(is.na(injury_data)))
+
+```
+
+```{r}
+injury_data[injury_data == ''] = NA
+
+injury_data = na.omit(injury_data)
+
+# print(sum(is.na(injury_data)))
+
+```
+
+```{r}
+injury_data$Weather <- factor(injury_data$Weather)
+injury_data$Surface.Condition <- factor(injury_data$Surface.Condition)
+injury_data$Collision.Type <- factor(injury_data$Collision.Type)
+injury_data$Injury.Severity <- factor(injury_data$Injury.Severity)
+```
+
+```{r}
+# Load required library
+library(randomForest)
+library(caret)
+
+# Set seed for reproducibility
+set.seed(123)
+
+# Split the data into training and testing sets
+train_indices <- createDataPartition(injury_data$Injury.Severity, p = 0.8, list = FALSE)
+train_data <- injury_data[train_indices, ]
+test_data <- injury_data[-train_indices, ]
+# train_data
+# Fit random forest model
+rmodel <- randomForest(Injury.Severity ~ ., data = train_data, ntree = 500)
+# print(rmodel)
+```
+
+```{r}
+predictions <- predict(rmodel, newdata = test_data)
+
+# Create confusion matrix
+conf_matrix <- table(predictions, test_data$Injury.Severity)
+
+# Calculate accuracy
+accuracy <- sum(diag(conf_matrix)) / sum(conf_matrix)
+
+# Calculate precision
+precision <- diag(conf_matrix) / rowSums(conf_matrix)
+
+# Calculate recall
+recall <- diag(conf_matrix) / colSums(conf_matrix)
+
+# Calculate F1-score
+f1_score <- 2 * precision * recall / (precision + recall)
+
+# Print accuracy, precision, recall, and F1-score
+# print(paste("Accuracy:", accuracy))
+# print("Precision:")
+# print(precision)
+# print("Recall:")
+# print(recall)
+# print("F1-score:")
+# print(f1_score)
+
+# Print confusion matrix
+#print("Confusion Matrix:")
+#print(conf_matrix)
+```
+
+```{r}
+# Evaluate the model using confusion matrix
+conf_matrix <- table(test_data$Injury.Severity, predictions)
+
+# Calculate accuracy
+accuracy <- sum(diag(conf_matrix)) / sum(conf_matrix)
+
+# Print accuracy
+# print(paste("Accuracy:", accuracy))
+```
+
+```{r}
+importance(rmodel)
+```
+
+```{r}
+varImpPlot(rmodel)
+```
+
 </details>
+
+### Accuracy
+
+![](images/Screenshot%202024-05-03%20at%208.49.37%20PM.png)
+
+### Precision
+
+![](images/Screenshot%202024-05-03%20at%208.50.32%20PM.png)
+
+### Recall
+
+![](images/Screenshot%202024-05-03%20at%208.51.35%20PM.png)
+
+### f1_score
+
+![](images/Screenshot%202024-05-03%20at%208.52.19%20PM.png)
+
+#### Confusion Matrix
+
+![](images/Screenshot%202024-05-03%20at%208.48.45%20PM.png)
+
+### Importance model
+
+![](images/Screenshot 2024-05-03 at 8.56.06 PM.png)
+
+Graph:
+
+![](images/Screenshot 2024-05-03 at 8.57.31 PM.png)
 
 ::: {style="text-align:justify"}
 **Interpretation of Results**: The question aims to predict the severity of injuries resulting from collisions based on various factors such as weather conditions, road surface conditions, and collision types. The output is from a random forest classification model trained on a dataset (train_data). The model's accuracy is approximately 80.69%, indicating its ability to predict injury severity.
@@ -322,21 +499,12 @@ Overall, the output suggests that weather conditions, road surface conditions, a
 
 ### Accuracy :
 
-![](images/WhatsApp%20Image%202024-05-03%20at%2011.24.47%20AM.jpeg){fig-align="center"}
+![](images/WhatsApp%20Image%202024-05-03%20at%2011.24.47%20AM.jpeg){fig-align="center"} \### Precision : ![](images/WhatsApp%20Image%202024-05-03%20at%2011.58.44%20AM.jpeg) \### Recall : ![](images/WhatsApp%20Image%202024-05-03%20at%2011.58.44%20AM%20(1).jpeg) \### F1_score : ![](images/WhatsApp%20Image%202024-05-03%20at%2011.58.43%20AM.jpeg)
 
-### Precision :
-
-![](images/WhatsApp Image 2024-05-03 at 11.58.44 AM.jpeg)
-
-### Recall :
-
-![](images/WhatsApp Image 2024-05-03 at 11.58.44 AM (1).jpeg)
-
-### F1_score :
-
-![](images/WhatsApp Image 2024-05-03 at 11.58.43 AM.jpeg)
 <details>
+
 <summary>Code</summary>
+
 ```{r}
 library(randomForest)
 library(caret)
@@ -398,15 +566,22 @@ print(f1_score)
 print("Confusion Matrix:")
 print(conf_matrix)
 ```
+
 </details>
+
 ### Graph :
+
 ![](images/pd2.png){width="1000"}
+
 <details>
+
 <summary>Code</summary>
+
 ```{r}
 library('rpart.plot')
 prp(d_model, type = 2, extra = 1, branch = 0.6)
 ```
+
 </details>
 
 ::: {style="text-align:justify"}
