@@ -15,6 +15,24 @@ output:
 
 ***Group Number: 14***
 
+## What is Project based on?
+
+::: {style="text-align:justify"}
+Our project revolves around a thorough examination of a dataset documenting motor vehicle collisions on county and local roadways within Montgomery County, Maryland. This dataset serves as the cornerstone for our investigation into the myriad factors that influence traffic accidents and their consequences. Through meticulous analysis and advanced statistical techniques, we aim to uncover insightful patterns and correlations that can inform proactive measures for enhancing road safety and mitigating accident risks.
+
+In our endeavor, we transcend conventional data exploration by incorporating hypothesis testing and predictive modeling methodologies. By formulating and testing hypotheses pertaining to weather conditions, daylight, injury severity, vehicle types, distractions, and traffic control measures, we strive to unveil underlying relationships and trends within the data. Additionally, our predictive modeling efforts seek to anticipate injury severity and vehicle damage extent based on a diverse set of variables including collision type, vehicle movement, and speed limit. Through this comprehensive approach, our project aspires to deliver actionable insights that can empower stakeholders in making informed decisions aimed at fostering safer road environments and reducing the occurrence of motor vehicle collisions.
+:::
+
+## What’s our Goal?
+
+::: {style="text-align:justify"}
+Our goal is to deeply understand why and how motor vehicle collisions happen in Montgomery County, Maryland. By analyzing a vast amount of data on these accidents, we aim to uncover patterns, trends, and correlations that shed light on the factors contributing to crashes. Through this exploration, we seek to identify key variables such as weather conditions, road surfaces, vehicle types, and driver behaviors that play significant roles in accident occurrence and severity.
+
+Ultimately, our aim is to use this knowledge to inform strategies and interventions that can enhance road safety and reduce the frequency and severity of motor vehicle collisions. By providing insights into the root causes and contributing factors of accidents, we aspire to empower policymakers, law enforcement agencies, and community stakeholders with the information they need to implement effective measures for preventing accidents and safeguarding lives on the roads of Montgomery County.
+:::
+
+## Research Questions : 
+
 ## Visualization1 : What are the trends in the frequency of car crashes over years?
 
 ```{r ,message = FALSE ,echo=FALSE}
